@@ -53,7 +53,7 @@
     "react": "^19.0.0",
     "react-day-picker": "^9.7.0",
     "react-dom": "^19.0.0",
-    "react-dropzone": "^14.3.8",
+    "react-dropzone": "^15.0.0",
     "react-hook-form": "^7.54.2",
     "react-page-tracker": "^0.3.1",
     "stripe": "^17.7.0",
