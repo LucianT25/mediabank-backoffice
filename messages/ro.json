@@ -1,0 +1,811 @@
+{
+  "HomePage": {
+    "title": "Backoffice",
+    "login": "Autentificare",
+    "signup": "Înscrie-te",
+    "browse": "Caută",
+    "terms": "Termeni și condiții",
+    "about": "Despre noi"
+  },
+  "RegisterPage": {
+    "reseller": "Înregistrare ca reseller",
+    "createReseller": "Creați un cont nou de reseller",
+    "contactStaff": "Vă rugăm, contactați staff-ul pentru a primi acces în backoffice pentru alte roluri."
+  },
+  "LoginForm": {
+    "title": "Conectați-vă la cont",
+    "description": "Introduceți adresa de e-mail pentru a vă conecta",
+    "email": "E-mail",
+    "password": "Parolă",
+    "forgotPassword": "Ați uitat parola?",
+    "login": "Conectați-vă",
+    "google": "Conectați-vă cu Google"
+  },
+  "ForgotPassword": {
+    "title": "Ați uitat parola?",
+    "description": "Introduceți adresa de e-mail pentru a o reseta.",
+    "submit": "Trimite",
+    "checkEmail": "Vă rugăm să verificați e-mailul pentru instrucțiuni suplimentare.",
+    "defaultError": "A apărut o eroare.",
+    "rememberedPassword": "V-ați amintit parola?",
+    "signIn": "Conectați-vă"
+  },
+  "ResetPassword": {
+    "title": "Introduceți noua parolă.",
+    "description": "Nu vă faceți griji! Și noi uităm parolele noastre...",
+    "newPassword": "Parolă nouă",
+    "submit": "Trimite",
+    "success": "Succes!",
+    "resetError": "Ceva n-a mers. Te rog să încerci din nou mai târziu.",
+    "rememberedPassword": "V-ați amintit parola?",
+    "signIn": "Conectați-vă"
+  },
+  "SetPassword": {
+    "title": "Introduceți noua parolă.",
+    "description": "După aceasta veți putea accesa backoffice-ul.",
+    "newPassword": "Parolă nouă",
+    "submit": "Trimite",
+    "success": "Succes!",
+    "resetError": "Ceva n-a mers. Te rog să încerci din nou mai târziu."
+  },
+  "Onboarding": {
+    "back": "Înapoi",
+    "pleaseWait": "Vă rugăm să așteptați...",
+    "addInformation": "Adăugați informații pentru a începe să acceptați comenzi"
+  },
+  "StripeWarning": {
+    "welcome": "Bine ați venit!",
+    "completeOnboarding": "Înainte de a accepta prima comandă, vă rugăm să completați procesul de înregistrare Stripe.",
+    "start": "Începe"
+  },
+  "Form": {
+    "email": "E-mail",
+    "emailPlaceholder": "email@exemplu.ro",
+    "emailInvalid": "Vă rugăm să introduceți un e-mail valid.",
+    "fullName": "Nume complet",
+    "fullNamePlaceholder": "Ion Popescu",
+    "nameMinLength": "Numele trebuie să aibă cel puțin 2 caractere.",
+    "companyName": "Numele companiei",
+    "companyNamePlaceholder": "Compania dvs.",
+    "companyNameMinLength": "Numele companiei trebuie să aibă cel puțin 2 caractere.",
+    "subdomain": "Subdomeniu",
+    "subdomainPlaceholder": "compania-dvs",
+    "subdomainMinLength": "Subdomeniul trebuie să aibă cel puțin 2 caractere.",
+    "subdomainFormat": "Subdomeniul poate conține doar litere mici, numere și cratime.",
+    "checkingSubdomain": "Se verifică disponibilitatea...",
+    "subdomainAvailable": "Subdomeniul este disponibil",
+    "subdomainTaken": "Acest subdomeniu este deja folosit.",
+    "cui": "CUI",
+    "cuiPlaceholder": "Cod Unic de Identificare",
+    "cuiMinLength": "CUI-ul trebuie să aibă cel puțin 8 caractere.",
+    "password": "Parolă",
+    "passwordMinLength": "Parola trebuie să aibă cel puțin 8 caractere.",
+    "confirmPassword": "Confirmă parola",
+    "confirmPasswordRequired": "Vă rugăm să completați acest câmp.",
+    "passwordsMatch": "Parolele trebuie să coincidă.",
+    "createAccount": "Creează cont",
+    "creatingAccount": "Se creează contul...",
+    "success": "Succes",
+    "error": "Eroare",
+    "resellerCreated": "Contul dvs. de reseller a fost creat. Acum vă puteți conecta.",
+    "resellerCreateFailed": "Nu s-a putut crea contul de reseller"
+  },
+  "Statistics": {
+    "last30Days": "Ultimele 30 de zile",
+    "orderNumber": "Comanda #{number}",
+    "noNewOrders": "Nu există comenzi noi în ultimele 24 de ore",
+    "super": {
+      "newOrdersTitle": "Comenzi noi",
+      "totalOrdersTitle": "Total comenzi",
+      "revenueTitle": "Venit total",
+      "ordersTitle": "Comenzi recente",
+      "ordersDescription": "Comenzi plasate în ultimele 24 de ore"
+    },
+    "reseller": {
+      "newOrdersTitle": "Comenzi noi",
+      "totalOrdersTitle": "Total comenzi",
+      "revenueTitle": "Venit total",
+      "ordersTitle": "Comenzi recente",
+      "ordersDescription": "Comenzi efectuate în ultimele 24 de ore"
+    },
+    "manufacturer": {
+      "newOrdersTitle": "Îndepliniri noi",
+      "totalOrdersTitle": "Total îndepliniri",
+      "revenueTitle": "Venit total",
+      "ordersTitle": "Îndepliniri recente",
+      "ordersDescription": "Îndepliniri efectuate în ultimele 24 de ore"
+    }
+  },
+  "StatusBadge": {
+    "awaiting-payment": "Plată în așteptare",
+    "paid": "Plătit",
+    "in-progress": "În curs",
+    "shipped": "Livrat",
+    "done": "Terminat",
+    "cancelled": "Anulat",
+    "approved": "Aprobat",
+    "declined": "Respins",
+    "manufacturer-changes": "Modificări producător",
+    "pending": "În așteptare",
+    "custom-quote": "Oferta personalizată în așteptare"
+  },
+  "Sidebar": {
+    "management": "Management",
+    "admins": "Administratori",
+    "buyers": "Cumpărători",
+    "resellers": "Revânzători",
+    "manufacturers": "Producători",
+    "orders": "Comenzi",
+    "products": "Produse",
+    "product catalog": "Catalog Produse",
+    "materials": "Materiale",
+    "chat": "Chat",
+    "financial": "Financiar",
+    "stripe": "Stripe",
+    "settings": "Setări",
+    "general": "General",
+    "account": "Cont",
+    "orderFulfillments": "Îndepliniri Comenzi",
+    "order fulfillments": "Îndepliniri Comenzi",
+    "dashboard": "Dashboard",
+    "pricing": "Pret",
+    "new": "Nou",
+    "customization": "Personalizare"
+  },
+  "NavUser": {
+    "account": "Cont",
+    "notifications": "Notificări",
+    "logout": "Deconectare"
+  },
+  "Admins": {
+    "title": "Administratori",
+    "Table": {
+      "selectAll": "Selectează tot",
+      "selectRow": "Selectează rând",
+      "name": "Nume",
+      "email": "Email",
+      "type": "Tip",
+      "organizationKey": "Cheie organizație",
+      "actions": "Acțiuni",
+      "copyUserId": "Copiază ID utilizator",
+      "editUser": "Editează utilizator",
+      "resetPassword": "Resetează parola",
+      "deleteUser": "Șterge utilizator",
+      "filterEmails": "Filtrează emailuri...",
+      "clearFilters": "Șterge filtrele",
+      "invite": "Invită",
+      "noResults": "Niciun rezultat.",
+      "confirmResetPassword": "Sigur doriți să trimiteți un email de recuperare a parolei acestui utilizator?",
+      "emailSent": "Emailul a fost trimis.",
+      "userUpdated": "Utilizatorul a fost actualizat.",
+      "userCreated": "Utilizatorul a fost creat.",
+      "userDeleted": "Utilizatorul a fost șters.",
+      "confirmDeleteUser": "Sigur doriți să ștergeți acest utilizator?"
+    },
+    "Modal": {
+      "sendInvitationTo": "Trimite invitație către",
+      "invitationDescription": "Vor primi un email cu un link pentru a-și seta parola.",
+      "id": "ID",
+      "name": "Nume",
+      "email": "Email",
+      "type": "Tip",
+      "pleaseSelect": "Vă rugăm selectați",
+      "resellerKey": "Cheie revânzător",
+      "manufacturerKey": "Cheie producător",
+      "delete": "Șterge",
+      "submit": "Trimite"
+    }
+  },
+  "Buyers": {
+    "title": "Cumpărători",
+    "Table": {
+      "selectAll": "Selectează tot",
+      "selectRow": "Selectează rând",
+      "name": "Nume",
+      "email": "Email",
+      "resellerKey": "Cheie revânzător",
+      "actions": "Acțiuni",
+      "copyUserId": "Copiază ID utilizator",
+      "viewInfo": "Vezi informații",
+      "resetPassword": "Resetează parola",
+      "deleteUser": "Șterge utilizator",
+      "filterPlaceholder": "Filtrează...",
+      "clearFilters": "Șterge filtrele",
+      "noResults": "Niciun rezultat.",
+      "confirmResetPassword": "Sigur doriți să trimiteți un email de recuperare a parolei acestui utilizator?",
+      "emailSent": "Emailul a fost trimis.",
+      "confirmDeleteUser": "Sigur doriți să ștergeți acest utilizator?",
+      "userDeleted": "Utilizatorul a fost șters."
+    },
+    "Modal": {
+      "fullName": "Numele complet",
+      "addressLine1": "Adresa Linia 1",
+      "addressLine2": "Adresa Linia 2",
+      "city": "Oraș",
+      "county": "Județ",
+      "postCode": "Cod poștal",
+      "country": "Țară",
+      "phone": "Telefon",
+      "noAddressInfo": "Nu sunt disponibile informații despre adresă."
+    }
+  },
+  "Manufacturers": {
+    "title": "Producători",
+    "Table": {
+      "selectAll": "Selectează tot",
+      "selectRow": "Selectează rând",
+      "name": "Nume",
+      "key": "Cheie",
+      "address": "Adresă",
+      "website": "Website",
+      "status": "Status",
+      "actions": "Acțiuni",
+      "copyManufacturerId": "Copiază ID producător",
+      "viewDetails": "Vezi detalii",
+      "editManufacturer": "Editează producător",
+      "deleteManufacturer": "Șterge producător",
+      "search": "Caută",
+      "clearFilters": "Șterge filtrele",
+      "deleteSelectedItems": "Șterge elementele selectate",
+      "noResults": "Niciun rezultat.",
+      "manufacturerUpdated": "Producătorul a fost actualizat.",
+      "manufacturerCreated": "Producătorul a fost creat.",
+      "manufacturerDeleted": "Producătorul a fost șters.",
+      "manufacturersDeleted": "Producătorii au fost șterși.",
+      "confirmDeleteSingle": "Sigur doriți să ștergeți acest producător?",
+      "confirmDeleteMultiple": "Sigur doriți să ștergeți acești {count} producători?"
+    },
+    "Modal": {
+      "manufacturerDetails": "Detalii producător",
+      "editManufacturerDetails": "Editați detaliile producătorului",
+      "fields": {
+        "id": "ID",
+        "key": "Cheie",
+        "name": "Nume",
+        "address": "Adresă",
+        "website": "Site web",
+        "activeStatus": "Stare activă"
+      },
+      "placeholders": {
+        "enterManufacturerKey": "Introduceți cheia producătorului",
+        "enterManufacturerName": "Introduceți numele producătorului",
+        "enterManufacturerAddress": "Introduceți adresa producătorului",
+        "enterManufacturerWebsite": "Introduceți site-ul web al producătorului"
+      },
+      "descriptions": {
+        "activeStatus": "Dacă acest producător este activ în sistem"
+      },
+      "buttons": {
+        "delete": "Șterge",
+        "saveChanges": "Salvează modificările"
+      },
+      "validation": {
+        "keyMinLength": "Cheia trebuie să aibă cel puțin 2 caractere",
+        "keyFormat": "Cheia poate conține doar litere mici, cifre și cratime",
+        "nameMinLength": "Numele trebuie să aibă cel puțin 2 caractere",
+        "addressMinLength": "Adresa trebuie să aibă cel puțin 2 caractere",
+        "websiteFormat": "Trebuie să fie o adresă URL validă"
+      }
+    },
+    "PriceEngine": {
+      "configuratorTitle": "Prețul produsului",
+      "priceFormulaTab": "Preț",
+      "mountingFormulaTab": "Fixare",
+      "extrasFormulaTab": "Extras",
+      "priceFormulaLabel": "Preț =",
+      "mountingFormulaLabel": "Fixare =",
+      "extrasFormulaLabel": "Extras =",
+      "operators": "Operatori",
+      "values": "Valori",
+      "logic": "Logică",
+      "description": "Construiți formula de calcul pentru prețul semnului.",
+      "priceUpdated": "Formula de preț a fost actualizată.",
+      "graphicArea": "Suprafața Graficii",
+      "graphicAreaHint": "Suprafața calculată acoperită de text / SVG.",
+      "cutPerimeter": "Perimetrul tăiat",
+      "cutPerimeterHint": "Perimetrul marginilor textului / SVG-ului.",
+      "letterHeight": "Înălțime Grafică",
+      "letterHeightHint": "Înălțimea textului / SVG-ului.",
+      "letterWidth": "Lățime Grafică",
+      "letterWidthHint": "Lățimea textului / SVG-ului.",
+      "letterDepth": "Adâncime Grafică",
+      "letterDepthHint": "Adâncimea textului / SVG-ului.",
+      "boxWidth": "Lățime Casetă",
+      "boxWidthHint": "Lățimea casetei.",
+      "boxHeight": "Înălțime Casetă",
+      "boxHeightHint": "Înălțimea casetei.",
+      "faceMaterial": "Material Față",
+      "faceMaterialHint": "Materialul folosit pentru fața textului / SVG-ului sau a casetei.",
+      "extraMaterial": "Extra Material",
+      "extraMaterialHint": "Materialul folosit pentru fața textului / SVG-ului pe semnele casetate",
+      "sideMaterial": "Material Lateral",
+      "sideMaterialHint": "Materialul folosit pentru canturile textului / SVG-ului sau a casetei.",
+      "ledMaterial": "Material LED",
+      "ledMaterialHint": "Tipul de LED-uri folosit pentru iluminarea textului / SVG-ului.",
+      "mountingMaterial": "Material Fixare",
+      "mountingMaterialHint": "Materialul folosit pentru fixare.",
+      "mounting": "Fixare",
+      "mountingHint": "Tipul de fixare (0 = Perete, 1 = Bond taiat pe contur, 2 = Bond casetat, 3 = Cadru aluminiu, 4 = Plasa expandata, 5 = Tavan).",
+      "mountingOption": "Tip Fixare",
+      "mountingOptionHint": "Tipul de fixare (0 = Perete, 1 = Bond taiat pe contur, 2 = Bond casetat, 3 = Cadru aluminiu, 4 = Plasa expandata, 5 = Tavan).",
+      "mountingPadding": "Padding Fixare",
+      "mountingPaddingHint": "Padding-ul fixării.",
+      "mountingWidth": "Lățime Fixare",
+      "mountingWidthHint": "Lățimea fixării.",
+      "mountingHeight": "Înălțime Fixare",
+      "mountingHeightHint": "Înălțimea fixării.",
+      "isExterior": "Este Exterior",
+      "isExteriorHint": "Dacă semnul este pentru uz exterior (adevărat/fals).",
+      "withLightSensor": "Cu Senzor de Lumină",
+      "withLightSensorHint": "Dacă semnul include un senzor de lumină (adevărat/fals).",
+      "cableLength": "Lungime Cablu",
+      "cableLengthHint": "Lungimea cablului în metri.",
+      "constant": "Constantă",
+      "constantHint": "O valoare constantă",
+      "materialPrice": "Preț material",
+      "materialPriceHint": "Prețul materialului ales din listă.",
+      "materialValue": "Valoare Material Constant",
+      "materialValueHint": "Selectați o valoare aparținând unui material constant (preț, greutate sau consum) - Work in Progress!",
+      "variableMaterialValue": "Valoare Material Variabil",
+      "variableMaterialValueHint": "Selectați o valoare aparținând unui material variabil (faceMaterial, sideMaterial, extraMaterial, ledMaterial sau mountingMaterial)",
+      "id": "ID",
+      "price": "Preț",
+      "weight": "Greutate",
+      "consumption": "Consum",
+      "layoutAndNotes": "Layout și Note",
+      "ifStatement": "Declarație If",
+      "switch": "Switch",
+      "section": "Secțiune",
+      "comment": "Comentariu",
+      "deleteNode": "Șterge Nod",
+      "removeCase": "Elimină caz",
+      "switchInput": "Intrare",
+      "switchOutput": "Ieșire",
+      "switchDefault": "Implicit",
+      "switchShowCases": "▶ Afișează Cazuri",
+      "switchHideCases": "▼ Ascunde Cazuri",
+      "switchCase": "Caz:",
+      "switchAddCase": "+ Adaugă Caz",
+      "switchCases": "Cazuri",
+      "switchDefaultLabel": "+ Implicit",
+      "nodeInput": "Intrare",
+      "nodeOutput": "Ieșire",
+      "nodeCondition": "Condiție",
+      "nodeTrue": "Adevărat",
+      "nodeFalse": "Fals",
+      "nesting": "Nesting",
+      "plexiNestingResult": "Rezultat Nesting Plexi",
+      "plexiNestingResultHint": "Suprafața rezultată din nesting pe plăci plexi.",
+      "bondNestingResult": "Rezultat Nesting Bond",
+      "bondNestingResultHint": "Suprafața rezultată din nesting pe plăci bond.",
+      "oracalNestingResult": "Rezultat Nesting Oracal",
+      "oracalNestingResultHint": "Suprafața rezultată din nesting pe plăci oracal.",
+      "plexi": "Plexiglas",
+      "bond": "Bond",
+      "oracal": "Oracal",
+      "sheetWidth": "Lățime placă",
+      "sheetHeight": "Înălțime placă", 
+      "usedHeight": "Înălțime utilizată",
+      "download": "Descarcă"
+    }
+  },
+  "Resellers": {
+    "title": "Revânzători",
+    "Table": {
+      "selectAll": "Selectează tot",
+      "selectRow": "Selectează rând",
+      "id": "ID",
+      "name": "Nume",
+      "key": "Cheie",
+      "orders": "Comenzi",
+      "subscription": "Abonament",
+      "status": "Status",
+      "lastActive": "Ultima activitate",
+      "actions": "Acțiuni",
+      "copyResellerId": "Copiază ID revânzător",
+      "viewDetails": "Vezi detalii",
+      "editReseller": "Editează revânzător",
+      "deleteReseller": "Șterge revânzător",
+      "search": "Caută",
+      "allSubscriptions": "Toate abonamentele",
+      "clearFilters": "Șterge filtrele",
+      "noResults": "Niciun rezultat.",
+      "resellerUpdated": "Revânzătorul a fost actualizat.",
+      "resellerCreated": "Revânzătorul a fost creat.",
+      "resellerDeleted": "Revânzătorul a fost șters.",
+      "confirmDelete": "Sigur doriți să ștergeți acest revânzător?"
+    },
+    "Modal": {
+      "newReseller": "Revânzător nou",
+      "resellerDetails": "Detalii revânzător",
+      "editResellerDetails": "Editați detaliile revânzătorului",
+      "createNewReseller": "Creați un revânzător nou",
+      "fields": {
+        "id": "ID",
+        "name": "Nume",
+        "manufacturers": "Producători",
+        "stripeAccountId": "ID-ul contului Stripe",
+        "stripeOnboarded": "Integrat în Stripe"
+      },
+      "placeholders": {
+        "enterResellerName": "Introduceți numele revânzătorului",
+        "selectManufacturers": "Selectați producătorii",
+        "enterStripeAccountId": "Introduceți ID-ul contului Stripe"
+      },
+      "buttons": {
+        "delete": "Șterge",
+        "saveChanges": "Salvează modificările",
+        "createReseller": "Creează revânzător"
+      },
+      "validation": {
+        "nameRequired": "Numele este obligatoriu"
+      }
+    }
+  },
+  "Orders": {
+    "title": "Comenzi",
+    "Table": {
+      "email": "Email",
+      "reseller": "Revânzător",
+      "total": "Total",
+      "status": "Status",
+      "createdAt": "Creat la",
+      "actions": "Acțiuni",
+      "view": "Vizualizare",
+      "copyOrderId": "Copiază ID comandă",
+      "deleteOrder": "Șterge comanda",
+      "confirmDelete": "Sigur doriți să ștergeți această comandă?",
+      "orderDeleted": "Comanda a fost ștearsă.",
+      "noResults": "Niciun rezultat."
+    },
+    "Details": {
+      "orderDetails": "Detalii comandă",
+      "orderId": "ID comandă",
+      "status": "Status",
+      "pleaseSelect": "Vă rugăm selectați",
+      "orderSummary": "Sumar comandă",
+      "orderDate": "Data comenzii",
+      "email": "Email",
+      "total": "Total",
+      "shippingMethod": "Metodă de livrare",
+      "reseller": "Revânzător",
+      "shippingAddress": "Adresă de livrare",
+      "billingAddress": "Adresă de facturare",
+      "phone": "Telefon",
+      "approveChangesTitle": "Aprobă sau respinge modificările producătorului (Disponibil pentru 24 de ore)",
+      "reviewChangesMessage": "Verifică modificările consultând istoricul statusului comenzii.",
+      "approve": "Aprobă",
+      "decline": "Respinge",
+      "statusHistory": "Istoric status",
+      "entries": "{count, plural, =1 {intrare} other {intrări}}",
+      "timestamp": "Timestamp",
+      "statusDetails": "Detalii status",
+      "fulfillmentInformation": "Informații de îndeplinire",
+      "statusUpdated": "Statusul a fost actualizat.",
+      "changesStatus": "Modificări {status}.",
+      "documentUploaded": "Documentul a fost încărcat."
+    },
+    "Item": {
+      "title": "Articole",
+      "quote": "Cotație",
+      "customQuoteMessage": "Descriere ofertă personalizată"
+
+    }
+  },
+  "Products": {
+    "title": "Produse",
+    "Table": {
+      "product": "Produs",
+      "type": "Tip",
+      "manufacturer": "Producător",
+      "markup": "Markup",
+      "search": "Căutare",
+      "clearFilters": "Șterge filtrele",
+      "deleteSelected": "Șterge articolele selectate",
+      "addProduct": "Adăugați produs",
+      "selectAll": "Selectați tot",
+      "selectRow": "Selectați rândul",
+      "actions": "Acțiuni",
+      "copyProductId": "Copiați ID-ul produsului",
+      "viewDetails": "Vizualizați detaliile",
+      "editProduct": "Editați produsul",
+      "deleteProduct": "Ștergeți produsul",
+      "editPricingFormula": "Editați formula de calcul de preț",
+      "noResults": "Niciun rezultat.",
+      "productUpdated": "Produsul a fost actualizat.",
+      "productDeleted": "Produsul a fost șters.",
+      "productsDeleted": "Produsele au fost șterse.",
+      "confirmDeleteSingle": "Sigur că doriți să ștergeți acest produs?",
+      "confirmDeleteMultiple": "Sigur că doriți să ștergeți aceste {count} produse?",
+      "manufacturerDisabled": "Producătorul acestui produs este dezactivat.",
+      "productNotVisible": "Acest produs nu va fi afișat în magazin.",
+      "editCustomizations": "Editați personalizările produsului"
+    },
+    "Modal": {
+      "title": "Detalii produs",
+      "description": "Editați marcajul produsului și vizualizați detaliile",
+      "fields": {
+        "id": "ID",
+        "name": "Nume",
+        "manufacturer": "Producător",
+        "basePrice": "Preț de bază",
+        "markup": "Marjă comercială (%)"
+      },
+      "placeholders": {
+        "markup": "Introduceți procentul de marjă comercială"
+      },
+      "buttons": {
+        "delete": "Ștergeți",
+        "save": "Salvați modificările"
+      }
+    },
+    "AddModal": {
+      "title": "Adăugați produse",
+      "subtitle": "Adăugați produse în catalog",
+      "description": "Selectați produse și setați procentele de adaos",
+      "fields": {
+        "products": "Produse",
+        "markup": "Adaos"
+      },
+      "placeholders": {
+        "selectProducts": "Selectați produsele de adăugat",
+        "markup": "Adaos"
+      },
+      "productMarkups": "Adaosuri produse",
+      "adding": "Se adaugă...",
+      "addToCatalog": "Adăugați în catalog",
+      "loading": "Se încarcă produsele...",
+      "noProducts": "Nu sunt disponibile produse de adăugat",
+      "selectAtLeastOne": "Selectați cel puțin un produs",
+      "addSuccess": "Produsele au fost adăugate în catalogul dvs."
+    },
+    "Customization": {
+      "title": "Personalizare Produs",
+      "description": "Configurați opțiunile de personalizare ale produsului",
+      "customizationSaved": "Personalizările produsului au fost salvate.",
+      "sections": {
+        "faceColors": "Culori Față",
+        "sideColors": "Culori Laterale",
+        "extraColors": "Culori Extra",
+        "ledColors": "Culori LED",
+        "mounting": "Opțiuni de Montaj"
+      },
+      "mounting": {
+        "title": "Configurare Montaj",
+        "ralColorStandard": "Standard de culoare RAL",
+        "materials": "Materiale",
+        "selectMaterials": "Selectați materiale",
+        "selectMountingOptions": "Selectați opțiuni de montaj",
+        "noMountingOptions": "Nu s-au găsit opțiuni de montaj.",
+        "options": {
+          "0": "Prindere direct pe perete",
+          "1": "Fundal Bond - taiat pe contur",
+          "2": "Fundal Bond - casetat",
+          "3": "Cadru aluminiu",
+          "4": "Fundal - Plasa Expandata",
+          "5": "Agatare din tavan"
+        }
+      },
+      "mountingDescription": "Configurați opțiunile de montaj și materialele acestora",
+      "addMaterials": "Adăugați Materiale",
+      "clearAll": "Șterge Tot",
+      "searchMaterials": "Căutați materiale...",
+      "noMaterialsFound": "Nu s-au găsit materiale care să corespundă căutării.",
+      "noMaterials": "Nu s-au găsit materiale.",
+      "saveButton": "Salvează",
+      "materialSelection": {
+        "title": "Selectați Materiale",
+        "description": "Selectați materiale pentru opțiunea de personalizare",
+        "searchPlaceholder": "Căutați materiale după ID sau alias...",
+        "noSelection": "Niciun material selectat",
+        "cancel": "Anulează",
+        "addSelected": "Adăugați Selectate ({selectedCount})",
+        "noMaterials": "Nu s-au găsit materiale.",
+        "noSearchResults": "Nu s-au găsit materiale care să corespundă căutării."
+      }
+    }
+  },
+  "Materials": {
+    "title": "Materiale",
+    "Table": {
+      "material": "Material",
+      "addMaterial": "Adaugă Material",
+      "copyMaterialId": "Copiaza ID-ul materialului",
+      "editMaterial": "Editează materialul",
+      "deleteMaterial": "Șterge materialul",
+      "materialUpdated": "Materialul a fost actualizat.",
+      "materialCreated": "Materialul a fost creat.",
+      "materialDeleted": "Materialul a fost șters",
+      "materialsDeleted": "Materialele au fost șterse",
+      "confirmDelete": "Ești sigur că vrei sa ștergi acest material?",
+      "confirmDeleteMultiple": "Ești sigur că vrei sa ștergi aceste {count} materiale?",
+      "clearFilters": "Șterge filtrele",
+      "deleteSelectedItems": "Șterge materialele selectate"
+    },
+    "Form": {
+      "naming": "Denumire",
+      "color": "Culoare",
+      "sizeUnits": "Dimensiuni și unități",
+      "pricing": "Preț",
+      "optimizationOthers": "Optimizare și altele"
+    },
+    "Fields": {
+      "id": "ID",
+      "name": "Nume",
+      "colorName": "Nume Culoare",
+      "colorCode": "Cod Culoare",
+      "colorHex": "Hex Culoare",
+      "colorStandard": "Standard Culoare",
+      "colorFinish": "Finisaj",
+      "aspect": "Aspect",
+      "aspectDescription": "Aspectul materialului când este folosit în configurator.",
+      "aspectGlossy": "Lucios",
+      "aspectMatte": "Mat",
+      "productAlias": "Alias Produs",
+      "currency": "Moneda",
+      "salesUnit": "Unitate Vânzare",
+      "purchasePrice": "Preț achiziție",
+      "addedPrice": "Adaos",
+      "salePrice": "Pret Vânzare",
+      "equipment": "Echipament",
+      "workProfile": "Profile de lucru",
+      "materialSize": "Dimensiune",
+      "sizeUnit": "UM dimensiune",
+      "weightKg": "Greutate (kg)",
+      "weightUnit": "UM Greutate",
+      "optimizationOptions": "Optimizare",
+      "optimizationType": "Tip de optimizare",
+      "ledDensity": "Densitate LED",
+      "consumption": "Consumption"
+    }
+  },
+  "Documents": {
+    "documents": "Documente",
+    "entries": "{count, plural, =1 {intrare} other {intrări}}",
+    "uploadDocument": "Încarcă Document",
+    "noDocuments": "Nu au fost încărcate documente încă",
+    "name": "Nume",
+    "type": "Tip",
+    "actions": "Acțiuni",
+    "view": "Vizualizare",
+    "Upload": {
+      "title": "Încarcă Document",
+      "description": "Încarcă un document și selectează tipul acestuia",
+      "fields": {
+        "type": "Tipul Documentului",
+        "typePlaceholder": "Selectează tipul documentului",
+        "file": "Fișier"
+      },
+      "types": {
+         "invoice": "Factură",
+         "misc": "Diverse"
+       },
+      "buttons": {
+        "upload": "Încarcă Document"
+      },
+      "validation": {
+         "typeRequired": "Tipul documentului este obligatoriu",
+         "fileRequired": "Fișierul este obligatoriu"
+       },
+       "dropzone": {
+         "uploadFile": "Încarcă un fișier",
+         "dragAndDrop": "Trage și plasează sau fă clic pentru a încărca",
+         "acceptedFormats": "Acceptă fișiere PNG, JPG, PDF, DOC, DOCX până la 10MB"
+       }
+     }
+   },
+  "Fulfillments": {
+    "title": "Îndepliniri Comenzi",
+    "Table": {
+      "orderId": "ID Comandă",
+      "client": "Client",
+      "items": "Articole",
+      "itemsCount": "{count} articol(e)",
+      "status": "Stare",
+      "createdAt": "Creat la",
+      "openMenu": "Deschide meniu",
+      "actions": "Acțiuni",
+      "view": "Vizualizare",
+      "copyId": "Copiază ID",
+      "noResults": "Niciun rezultat."
+    },
+    "Details": {
+      "orderFulfillmentDetails": "Detalii îndeplinire comandă",
+      "orderFulfillmentId": "ID îndeplinire comandă",
+      "orderId": "ID comandă",
+      "status": "Stare",
+      "orderSummary": "Rezumat comandă",
+      "orderDate": "Data comenzii",
+      "email": "Email",
+      "total": "Total",
+      "shippingMethod": "Metodă de livrare",
+      "deliveryDate": "Data livrării",
+      "reseller": "Revânzător",
+      "shippingAddress": "Adresă de livrare",
+      "billingAddress": "Adresă de facturare",
+      "phone": "Telefon",
+      "statusHistory": "Istoric stare",
+      "addStatus": "Adaugă stare",
+      "timestamp": "Timestamp",
+      "statusDetails": "Detalii stare",
+      "entries": "{count, plural, =1 {intrare} other {intrări}}",
+      "fulfillmentInformation": "Informații îndeplinire",
+      "statusUpdated": "Starea a fost actualizată.",
+      "changesSubmitted": "Modificările dvs. au fost trimise pentru aprobare.",
+      "messageSubmitted": "Mesaj trimis cu succes.",
+      "billableMaterialsExported": "Materialele facturabile au fost exportate cu succes.",
+      "exportBillableMaterials": "Exportați materialele facturabile"
+    },
+    "ChangesForm": {
+      "title": "Ajustează cotația și termenul limită (Disponibil pentru 24 de ore)",
+      "fields": {
+        "proposedDeliveryDate": "Data propusă de livrare",
+        "productPriceAdjustments": "Ajustări ale prețului produsului"
+      },
+      "placeholders": {
+        "selectDeliveryDate": "Selectează data de livrare"
+      },
+      "labels": {
+        "current": "Curent"
+      },
+      "buttons": {
+        "submitChanges": "Trimite modificările"
+      },
+      "validation": {
+        "pricePositive": "Prețul trebuie să fie un număr pozitiv"
+      }
+    },
+    "AddStatus": {
+      "title": "Adaugă un mesaj de stare",
+      "description": "Adaugă manual un mesaj personalizat în Istoricul de Stări.",
+      "fields": {
+        "message": "Mesaj"
+      },
+      "buttons": {
+        "addStatus": "Adaugă starea"
+      },
+      "validation": {
+        "messageRequired": "Mesajul nu poate fi gol",
+        "messageMaxLength": "Mesajul trebuie să aibă maximum 100 de caractere"
+      }
+    }
+  },
+  "Messages": {
+    "invalidCredentials": "Emailul sau parola sunt greșite.",
+    "genericError": "Oh, oh! Ceva nu a mers bine.",
+    "subdomainTaken": "Acest subdomeniu este deja folosit.",
+    "subdomainFailed": "Nu s-a putut verifica disponibilitatea subdomeniului.",
+    "success": "Succes!",
+    "somethingWentWrong": "Ceva nu a mers bine. Vă rugăm încercați mai târziu."
+  },
+  "Auth": {
+    "invalid_credentials": "Email sau parolă invalidă",
+    "email_in_use": "Acest email este deja folosit",
+    "register_reseller_failed": "Înregistrarea revânzătorului a eșuat",
+    "provider_invalid": "Furnizor invalid sau nesuportat",
+    "missing_email": "Autentificare eșuată - lipsește emailul",
+    "user_not_found": "Nu s-a găsit niciun utilizator pentru acest email",
+    "google_auth_failed": "Autentificarea Google a eșuat",
+    "email_not_found": "Email-ul nu a fost găsit",
+    "check_email": "Verificați email-ul pentru a continua",
+    "invalid_token": "Token invalid",
+    "token_used": "Token-ul a fost deja utilizat",
+    "password_updated": "Parola a fost actualizată!",
+    "invalid_password": "Parolă invalidă"
+  },
+  "Misc": {
+    "or": "sau",
+    "back": "Înapoi",
+    "save": "Salvează",
+    "noResult": "Niciun rezultat.",
+    "search": "Caută",
+    "selectAll": "Selectează tot",
+    "selectRow": "Selectează",
+    "select": "Alege",
+    "actions": "Acțiuni",
+    "viewDetails": "Vezi detalii",
+    "clearFilters": "Elimină Filtrele",
+    "deleteSelected": "Șterge elementele selectate",
+    "changesSaved": "Modificările au fost salvate!"
+  }
+}

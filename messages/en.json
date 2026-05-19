@@ -1,0 +1,810 @@
+{
+  "HomePage": {
+    "title": "Backoffice",
+    "login": "Log In",
+    "signup": "Sign up",
+    "browse": "Browse",
+    "terms": "Terms & Conditions",
+    "about": "About us"
+  },
+  "LoginForm": {
+    "title": "Login to your account",
+    "description": "Enter your email below to login to your account",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot your password?",
+    "login": "Log In",
+    "google": "Sign in with Google"
+  },
+  "RegisterPage": {
+    "reseller": "Register as a reseller",
+    "createReseller": "Create a new reseller account",
+    "contactStaff": "Please contact staff to receive access in the backoffice for other roles."
+  },
+  "ForgotPassword": {
+    "title": "Forgot your password?",
+    "description": "Enter your email below to reset it.",
+    "submit": "Submit",
+    "checkEmail": "Please check your email for further instructions.",
+    "defaultError": "An error has occurred.",
+    "rememberedPassword": "Remembered your password?",
+    "signIn": "Sign in"
+  },
+  "ResetPassword": {
+    "title": "Enter your new password.",
+    "description": "Don't worry! We also forget our passwords...",
+    "newPassword": "New Password",
+    "submit": "Submit",
+    "success": "Success!",
+    "resetError": "Something went wrong. Please try again later.",
+    "rememberedPassword": "Remembered your password?",
+    "signIn": "Sign in"
+  },
+  "SetPassword": {
+    "title": "Enter your new password.",
+    "description": "After this you will be able to access the backoffice.",
+    "newPassword": "New Password",
+    "submit": "Submit",
+    "success": "Success!",
+    "resetError": "Something went wrong. Please try again later."
+  },
+  "Onboarding": {
+    "back": "Back",
+    "pleaseWait": "Please wait...",
+    "addInformation": "Add information to start accepting orders"
+  },
+  "StripeWarning": {
+    "welcome": "Welcome!",
+    "completeOnboarding": "Before accepting your first order, please complete your Stripe onboarding.",
+    "start": "Start"
+  },
+  "Form": {
+    "email": "Email",
+    "emailPlaceholder": "email@example.com",
+    "emailInvalid": "Please input a valid email.",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "John Doe",
+    "nameMinLength": "Name must be at least 2 characters.",
+    "companyName": "Company Name",
+    "companyNamePlaceholder": "Your Company",
+    "companyNameMinLength": "Company name must be at least 2 characters.",
+    "subdomain": "Subdomain",
+    "subdomainPlaceholder": "your-company",
+    "subdomainMinLength": "Subdomain must be at least 2 characters.",
+    "subdomainFormat": "Subdomain can only contain lowercase letters, numbers, and hyphens.",
+    "checkingSubdomain": "Checking availability...",
+    "subdomainAvailable": "Subdomain is available",
+    "subdomainTaken": "This subdomain is already taken.",
+    "cui": "CUI",
+    "cuiPlaceholder": "Company Identification Number",
+    "cuiMinLength": "CUI must be at least 8 characters.",
+    "password": "Password",
+    "passwordMinLength": "Password must be at least 8 characters.",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordRequired": "Please fill in this field.",
+    "passwordsMatch": "Passwords must match.",
+    "createAccount": "Create Account",
+    "creatingAccount": "Creating account...",
+    "success": "Success",
+    "error": "Error",
+    "resellerCreated": "Your reseller account has been created. You can now log in.",
+    "resellerCreateFailed": "Failed to create reseller account"
+  },
+  "Statistics": {
+    "last30Days": "Last 30 days",
+    "orderNumber": "Order #{number}",
+    "noNewOrders": "No new orders in the last 24 hours",
+    "super": {
+      "newOrdersTitle": "New Orders",
+      "totalOrdersTitle": "Total Orders",
+      "revenueTitle": "Total Revenue",
+      "ordersTitle": "Recent Orders",
+      "ordersDescription": "Orders placed in the last 24 hours"
+    },
+    "reseller": {
+      "newOrdersTitle": "New Orders",
+      "totalOrdersTitle": "Total Orders",
+      "revenueTitle": "Total Revenue",
+      "ordersTitle": "Recent Orders",
+      "ordersDescription": "Orders made in the last 24 hours"
+    },
+    "manufacturer": {
+      "newOrdersTitle": "New Fulfillments",
+      "totalOrdersTitle": "Total Fulfillments",
+      "revenueTitle": "Total Revenue",
+      "ordersTitle": "Recent Fulfillments",
+      "ordersDescription": "Fulfillments made in the last 24 hours"
+    }
+  },
+  "StatusBadge": {
+    "awaiting-payment": "Awaiting Payment",
+    "paid": "Paid",
+    "in-progress": "In Progress",
+    "shipped": "Shipped",
+    "done": "Done",
+    "cancelled": "Cancelled",
+    "approved": "Approved",
+    "declined": "Declined",
+    "manufacturer-changes": "Manufacturer Changes",
+    "pending": "Pending",
+    "custom-quote": "Custom Quote Pending"
+  },
+  "Sidebar": {
+    "management": "Management",
+    "admins": "Admins",
+    "buyers": "Buyers",
+    "resellers": "Resellers",
+    "manufacturers": "Manufacturers",
+    "orders": "Orders",
+    "products": "Products",
+    "product catalog": "Product Catalog",
+    "materials": "Materials",
+    "chat": "Chat",
+    "financial": "Financial",
+    "stripe": "Stripe",
+    "settings": "Settings",
+    "general": "General",
+    "account": "Account",
+    "orderFulfillments": "Order Fulfillments",
+    "order fulfillments": "Order Fulfillments",
+    "dashboard": "Dashboard",
+    "pricing": "Pricing",
+    "new": "New",
+    "customization": "Customization"
+  },
+  "NavUser": {
+    "account": "Account",
+    "notifications": "Notifications",
+    "logout": "Log out"
+  },
+  "Admins": {
+    "title": "Admins",
+    "Table": {
+      "selectAll": "Select all",
+      "selectRow": "Select row",
+      "name": "Name",
+      "email": "Email",
+      "type": "Type",
+      "organizationKey": "Organization Key",
+      "actions": "Actions",
+      "copyUserId": "Copy user ID",
+      "editUser": "Edit user",
+      "resetPassword": "Reset password",
+      "deleteUser": "Delete user",
+      "filterEmails": "Filter emails...",
+      "clearFilters": "Clear Filters",
+      "invite": "Invite",
+      "noResults": "No results.",
+      "confirmResetPassword": "Are you sure you want to send a password recovery email to this user?",
+      "emailSent": "The email was sent.",
+      "userUpdated": "The user was updated.",
+      "userCreated": "The user was created.",
+      "userDeleted": "The user was deleted.",
+      "confirmDeleteUser": "Are you sure you want to delete this user?"
+    },
+    "Modal": {
+      "sendInvitationTo": "Send invitation to",
+      "invitationDescription": "They will receive an email with a link to set their password.",
+      "id": "ID",
+      "name": "Name",
+      "email": "Email",
+      "type": "Type",
+      "pleaseSelect": "Please select",
+      "resellerKey": "Reseller key",
+      "manufacturerKey": "Manufacturer key",
+      "delete": "Delete",
+      "submit": "Submit"
+    }
+  },
+  "Buyers": {
+    "title": "Buyers",
+    "Table": {
+      "selectAll": "Select all",
+      "selectRow": "Select row",
+      "name": "Name",
+      "email": "Email",
+      "resellerKey": "Reseller key",
+      "actions": "Actions",
+      "copyUserId": "Copy user ID",
+      "viewInfo": "View info",
+      "resetPassword": "Reset password",
+      "deleteUser": "Delete user",
+      "filterPlaceholder": "Filter...",
+      "clearFilters": "Clear Filters",
+      "noResults": "No results.",
+      "confirmResetPassword": "Are you sure you want to send a password recovery email to this user?",
+      "confirmDeleteUser": "Are you sure you want to delete this user?",
+      "emailSent": "The email was sent.",
+      "userDeleted": "The user was deleted."
+    },
+    "Modal": {
+      "fullName": "Full Name",
+      "addressLine1": "Address Line 1",
+      "addressLine2": "Address Line 2",
+      "city": "City",
+      "county": "County",
+      "postCode": "Post Code",
+      "country": "Country",
+      "phone": "Phone",
+      "noAddressInfo": "No address information available."
+    }
+  },
+  "Manufacturers": {
+    "title": "Manufacturers",
+    "Table": {
+      "selectAll": "Select all",
+      "selectRow": "Select row",
+      "name": "Name",
+      "key": "Key",
+      "address": "Address",
+      "website": "Website",
+      "status": "Status",
+      "actions": "Actions",
+      "copyManufacturerId": "Copy manufacturer ID",
+      "viewDetails": "View details",
+      "editManufacturer": "Edit manufacturer",
+      "deleteManufacturer": "Delete manufacturer",
+      "search": "Search",
+      "clearFilters": "Clear Filters",
+      "deleteSelectedItems": "Delete selected items",
+      "noResults": "No results.",
+      "manufacturerUpdated": "The manufacturer was updated.",
+      "manufacturerCreated": "The manufacturer was created.",
+      "manufacturerDeleted": "The manufacturer was deleted.",
+      "manufacturersDeleted": "The manufacturers were deleted.",
+      "confirmDeleteSingle": "Are you sure you want to delete this manufacturer?",
+      "confirmDeleteMultiple": "Are you sure you want to delete these {count} manufacturers?"
+    },
+    "Modal": {
+      "manufacturerDetails": "Manufacturer Details",
+      "editManufacturerDetails": "Edit manufacturer details",
+      "fields": {
+        "id": "ID",
+        "key": "Key",
+        "name": "Name",
+        "address": "Address",
+        "website": "Website",
+        "activeStatus": "Active Status"
+      },
+      "placeholders": {
+        "enterManufacturerKey": "Enter manufacturer key",
+        "enterManufacturerName": "Enter manufacturer name",
+        "enterManufacturerAddress": "Enter manufacturer address",
+        "enterManufacturerWebsite": "Enter manufacturer website"
+      },
+      "descriptions": {
+        "activeStatus": "Whether this manufacturer is active in the system"
+      },
+      "buttons": {
+        "delete": "Delete",
+        "saveChanges": "Save Changes"
+      },
+      "validation": {
+        "keyMinLength": "Key must be at least 2 characters",
+        "keyFormat": "Key can only contain lowercase letters, numbers, and hyphens",
+        "nameMinLength": "Name must be at least 2 characters",
+        "addressMinLength": "Address must be at least 2 characters",
+        "websiteFormat": "Must be a valid URL"
+      }
+    },
+    "PriceEngine": {
+      "configuratorTitle": "Product Pricing",
+      "priceFormulaTab": "Price",
+      "mountingFormulaTab": "Mounting",
+      "extrasFormulaTab": "Extras",
+      "priceFormulaLabel": "Price =",
+      "mountingFormulaLabel": "Mounting =",
+      "extrasFormulaLabel": "Extras =",
+      "operators": "Operators",
+      "values": "Values",
+      "logic": "Logic",
+      "description": "Build the formula for computing the price of the sign.",
+      "priceUpdated": "The price formula has been updated.",
+      "graphicArea": "Graphic Area",
+      "graphicAreaHint": "The computed area covered by the text / SVG.",
+      "cutPerimeter": "Cut Perimeter",
+      "cutPerimeterHint": "The perimeter of the text / SVG edges.",
+      "letterHeight": "Graphic Height",
+      "letterHeightHint": "The height of the text / SVG.",
+      "letterWidth": "Graphic Width",
+      "letterWidthHint": "The width of the text / SVG.",
+      "letterDepth": "Graphic Depth",
+      "letterDepthHint": "The depth of the text / SVG.",
+      "boxWidth": "Box Width",
+      "boxWidthHint": "The width of the box.",
+      "boxHeight": "Box Height",
+      "boxHeightHint": "The height of the box.",
+      "faceMaterial": "Face Material",
+      "faceMaterialHint": "The material used for the face of the text / SVG, or box.",
+      "extraMaterial": "Extra Material",
+      "extraMaterialHint": "The material used for the face of the text / SVG on box signs",
+      "sideMaterial": "Side Material",
+      "sideMaterialHint": "The material used for the side of the text / SVG, or box.",
+      "ledMaterial": "LED Material",
+      "ledMaterialHint": "The type of LEDs used to light the text / SVG.",
+      "mountingMaterial": "Mounting Material",
+      "mountingMaterialHint": "The material used for mounting.",
+      "mounting": "Mounting",
+      "mountingHint": "The type of mounting (0 = Wall, 1 = CutBond, 2 = SquareBond, 3 = AluminumFrame, 4 = ChainFrame, 5 = Ceiling).",
+      "mountingOption": "Mounting Type",
+      "mountingOptionHint": "The type of mounting (0 = Wall, 1 = CutBond, 2 = SquareBond, 3 = AluminumFrame, 4 = ChainFrame, 5 = Ceiling).",
+      "mountingPadding": "Mounting Padding",
+      "mountingPaddingHint": "The padding of the mounting.",
+      "mountingWidth": "Mounting Width",
+      "mountingWidthHint": "The width of the mounting.",
+      "mountingHeight": "Mounting Height",
+      "mountingHeightHint": "The height of the mounting.",
+      "isExterior": "Is Exterior",
+      "isExteriorHint": "Whether the sign is for exterior use (true/false).",
+      "withLightSensor": "With Light Sensor",
+      "withLightSensorHint": "Whether the sign includes a light sensor (true/false).",
+      "cableLength": "Cable Length",
+      "cableLengthHint": "The length of the cable in meters.",
+      "constant": "Constant",
+      "constantHint": "A constant value",
+      "materialPrice": "Material Price",
+      "materialPriceHint": "The price of the material chosen from the list",
+      "materialValue": "Constant Material Value",
+      "materialValueHint": "Select a material value (price, weight, or consumption) - Work in progress!",
+      "variableMaterialValue": "Variable Material Value",
+      "variableMaterialValueHint": "Select a material value using a variable material (faceMaterial, sideMaterial, extraMaterial, ledMaterial, or mountingMaterial)",
+      "id": "ID",
+      "price": "Price",
+      "weight": "Weight",
+      "consumption": "Consumption",
+      "layoutAndNotes": "Layout & Notes",
+      "ifStatement": "If Statement",
+      "switch": "Switch",
+      "section": "Section",
+      "comment": "Comment",
+      "deleteNode": "Delete Node",
+      "removeCase": "Remove case",
+      "switchInput": "Input",
+      "switchOutput": "Output",
+      "switchDefault": "Default",
+      "switchShowCases": "▶ Show Cases",
+      "switchHideCases": "▼ Hide Cases",
+      "switchCase": "Case:",
+      "switchAddCase": "+ Add Case",
+      "switchCases": "Cases",
+      "switchDefaultLabel": "+ Default",
+      "nodeInput": "Input",
+      "nodeOutput": "Output",
+      "nodeCondition": "Condition",
+      "nodeTrue": "True",
+      "nodeFalse": "False",
+      "nesting": "Nesting",
+      "plexiNestingResult": "Plexi Nesting Result",
+      "plexiNestingResultHint": "The area resulted from nesting on plexi sheets.",
+      "bondNestingResult": "Bond Nesting Result",
+      "bondNestingResultHint": "The area resulted from nesting on bond sheets.",
+      "oracalNestingResult": "Oracal Nesting Result",
+      "oracalNestingResultHint": "The area resulted from nesting on oracal sheets.",
+      "plexi": "Plexiglas",
+      "bond": "Bond",
+      "oracal": "Oracal",
+      "sheetWidth": "Sheet Width",
+      "sheetHeight": "Sheet Height", 
+      "usedHeight": "Used Height",
+      "download": "Download"
+    }
+  },
+  "Resellers": {
+    "title": "Resellers",
+    "Table": {
+      "selectAll": "Select all",
+      "selectRow": "Select row",
+      "id": "ID",
+      "name": "Name",
+      "key": "Key",
+      "orders": "Orders",
+      "subscription": "Subscription",
+      "status": "Status",
+      "lastActive": "Last Active",
+      "actions": "Actions",
+      "copyResellerId": "Copy reseller ID",
+      "viewDetails": "View details",
+      "editReseller": "Edit reseller",
+      "deleteReseller": "Delete reseller",
+      "search": "Search",
+      "allSubscriptions": "All Subscriptions",
+      "clearFilters": "Clear Filters",
+      "noResults": "No results.",
+      "resellerUpdated": "The reseller was updated.",
+      "resellerCreated": "The reseller was created.",
+      "resellerDeleted": "The reseller was deleted.",
+      "confirmDelete": "Are you sure you want to delete this reseller?"
+    },
+    "Modal": {
+      "newReseller": "New Reseller",
+      "resellerDetails": "Reseller Details",
+      "editResellerDetails": "Edit reseller details",
+      "createNewReseller": "Create a new reseller",
+      "fields": {
+        "id": "ID",
+        "name": "Name",
+        "manufacturers": "Manufacturers",
+        "stripeAccountId": "Stripe Account ID",
+        "stripeOnboarded": "Stripe Onboarded"
+      },
+      "placeholders": {
+        "enterResellerName": "Enter reseller name",
+        "selectManufacturers": "Select manufacturers",
+        "enterStripeAccountId": "Enter Stripe account ID"
+      },
+      "buttons": {
+        "delete": "Delete",
+        "saveChanges": "Save Changes",
+        "createReseller": "Create Reseller"
+      },
+      "validation": {
+        "nameRequired": "Name is required"
+      }
+    }
+  },
+  "Orders": {
+    "title": "Orders",
+    "Table": {
+      "email": "Email",
+      "reseller": "Reseller",
+      "total": "Total",
+      "status": "Status",
+      "createdAt": "Created At",
+      "actions": "Actions",
+      "view": "View",
+      "copyOrderId": "Copy Order ID",
+      "deleteOrder": "Delete Order",
+      "confirmDelete": "Are you sure you want to delete this order?",
+      "orderDeleted": "The order was deleted.",
+      "noResults": "No results."
+    },
+    "Details": {
+      "orderDetails": "Order Details",
+      "orderId": "Order ID",
+      "status": "Status",
+      "pleaseSelect": "Please select",
+      "orderSummary": "Order Summary",
+      "orderDate": "Order Date",
+      "email": "Email",
+      "total": "Total",
+      "shippingMethod": "Shipping Method",
+      "reseller": "Reseller",
+      "shippingAddress": "Shipping Address",
+      "billingAddress": "Billing Address",
+      "phone": "Phone",
+      "approveChangesTitle": "Approve or decline manufacturer changes (Available for 24 hours)",
+      "reviewChangesMessage": "Review changes by checking order status history.",
+      "approve": "Approve",
+      "decline": "Decline",
+      "statusHistory": "Status history",
+      "entries": "{count, plural, =1 {entry} other {entries}}",
+      "timestamp": "Timestamp",
+      "statusDetails": "Status details",
+      "fulfillmentInformation": "Fulfillment Information",
+      "statusUpdated": "The status has been updated.",
+      "changesStatus": "Changes {status}.",
+      "documentUploaded": "Document uploaded."
+    },
+    "Item": {
+      "title": "Items",
+      "quote": "Quote",
+      "customQuoteMessage": "Custom Quote Description"
+    }
+  },
+  "Products": {
+    "title": "Products",
+    "Table": {
+      "product": "Product",
+      "type": "Type",
+      "manufacturer": "Manufacturer",
+      "markup": "Markup",
+      "search": "Search",
+      "clearFilters": "Clear Filters",
+      "deleteSelected": "Delete selected items",
+      "addProduct": "Add Product",
+      "selectAll": "Select all",
+      "selectRow": "Select row",
+      "actions": "Actions",
+      "copyProductId": "Copy product ID",
+      "viewDetails": "View details",
+      "editProduct": "Edit product",
+      "deleteProduct": "Delete product",
+      "editPricingFormula": "Edit pricing formula",
+      "noResults": "No results.",
+      "productUpdated": "The product was updated.",
+      "productDeleted": "The product was deleted.",
+      "productsDeleted": "The products were deleted.",
+      "confirmDeleteSingle": "Are you sure you want to delete this product?",
+      "confirmDeleteMultiple": "Are you sure you want to delete these {count} products?",
+      "manufacturerDisabled": "The manufacturer of this product is disabled.",
+      "productNotVisible": "This product will not show in the shop.",
+      "editCustomizations": "Edit customizations"
+    },
+    "Modal": {
+      "title": "Product Details",
+      "description": "Edit product markup and view details",
+      "fields": {
+        "id": "ID",
+        "name": "Name",
+        "manufacturer": "Manufacturer",
+        "basePrice": "Base Price",
+        "markup": "Markup (%)"
+      },
+      "placeholders": {
+        "markup": "Enter markup percentage"
+      },
+      "buttons": {
+        "delete": "Delete",
+        "save": "Save Changes"
+      }
+    },
+    "AddModal": {
+      "title": "Add Products",
+      "subtitle": "Add products to your catalog",
+      "description": "Select products and set markup percentages",
+      "fields": {
+        "products": "Products",
+        "markup": "Markup"
+      },
+      "placeholders": {
+        "selectProducts": "Select products to add",
+        "markup": "Markup"
+      },
+      "productMarkups": "Product Markups",
+      "adding": "Adding...",
+      "addToCatalog": "Add to Catalog",
+      "loading": "Loading products...",
+      "noProducts": "No products available to add",
+      "selectAtLeastOne": "Select at least one product",
+      "addSuccess": "Products were added to your catalog."
+    },
+    "Customization": {
+      "title": "Product Customization",
+      "description": "Configure product customization options",
+      "customizationSaved": "Customizations saved.",
+      "sections": {
+        "faceColors": "Face Colors",
+        "sideColors": "Side Colors",
+        "extraColors": "Extra Colors",
+        "ledColors": "LED Colors",
+        "mounting": "Mounting Options"
+      },
+      "mounting": {
+        "title": "Mounting Configuration",
+        "ralColorStandard": "RAL Color Standard",
+        "materials": "Materials",
+        "selectMaterials": "Select materials",
+        "selectMountingOptions": "Select mounting options",
+        "noMountingOptions": "No mounting options found.",
+        "options": {
+          "0": "Direct mounting on the wall",
+          "1": "Bonded backing - cut on the edge",
+          "2": "Bonded backing - caseted",
+          "3": "Aluminum frame",
+          "4": "Expanded backing",
+          "5": "Top mounting"
+        }
+      },
+      "mountingDescription": "Configure mounting options and their materials",
+      "addMaterials": "Add Materials",
+      "clearAll": "Clear All",
+      "searchMaterials": "Search materials...",
+      "noMaterialsFound": "No materials found matching your search.",
+      "noMaterials": "No materials found.",
+      "saveButton": "Save",
+      "materialSelection": {
+        "title": "Select Materials",
+        "description": "Select materials for the customization option",
+        "searchPlaceholder": "Search materials by ID or alias...",
+        "noSelection": "No materials selected",
+        "cancel": "Cancel",
+        "addSelected": "Add Selected ({selectedCount})",
+        "noMaterials": "No materials found.",
+        "noSearchResults": "No materials found matching your search."
+      }
+    }
+  },
+  "Materials": {
+    "title": "Materials",
+    "Table": {
+      "material": "Material",
+      "addMaterial": "Add Material",
+      "copyMaterialId": "Copy material ID",
+      "editMaterial": "Edit material",
+      "deleteMaterial": "Delete material",
+      "materialUpdated": "The material was updated.",
+      "materialCreated": "The material was created.",
+      "materialDeleted": "The material was deleted.",
+      "materialsDeleted": "The materials were deleted.",
+      "confirmDeleteSingle": "Are you sure you want to delete this material?",
+      "confirmDeleteMultiple": "Are you sure you want to delete these {count} materials?",
+      "clearFilters": "Clear Filters",
+      "deleteSelectedItems": "Delete selected materials"
+    },
+    "Form": {
+      "naming": "Naming",
+      "color": "Color",
+      "sizeUnits": "Size & Units",
+      "pricing": "Pricing",
+      "optimizationOthers": "Optimization & Other"
+    },
+    "Fields": {
+      "id": "ID",
+      "name": "Name",
+      "colorName": "Color Name",
+      "colorCode": "Color Code",
+      "colorHex": "Color Hex",
+      "colorStandard": "Color Standard",
+      "colorFinish": "Color Finish",
+      "aspect": "Aspect",
+      "aspectDescription": "The aspect of the material when used in the configurator.",
+      "aspectGlossy": "Glossy",
+      "aspectMatte": "Matte",
+      "productAlias": "Product Alias",
+      "currency": "Currency",
+      "salesUnit": "Sales Unit",
+      "purchasePrice": "Purchase Price",
+      "addedPrice": "Added Price",
+      "salePrice": "Sale Price",
+      "equipment": "Equipment",
+      "workProfile": "Work Profile",
+      "materialSize": "Material Size",
+      "sizeUnit": "Size Unit",
+      "weightKg": "Weight (kg)",
+      "weightUnit": "Weight Unit",
+      "optimizationOptions": "Optimization Options",
+      "optimizationType": "Optimization Type",
+      "ledDensity": "LED Density",
+      "consumption": "Consumption"
+    }
+  },
+  "Documents": {
+    "documents": "Documents",
+    "entries": "{count, plural, =1 {entry} other {entries}}",
+    "uploadDocument": "Upload Document",
+    "noDocuments": "No documents uploaded yet",
+    "name": "Name",
+    "type": "Type",
+    "actions": "Actions",
+    "view": "View",
+    "Upload": {
+      "title": "Upload Document",
+      "description": "Upload a document and select its type",
+      "fields": {
+        "type": "Document Type",
+        "typePlaceholder": "Select document type",
+        "file": "File"
+      },
+      "types": {
+        "invoice": "Invoice",
+        "misc": "Miscellaneous"
+      },
+      "buttons": {
+        "upload": "Upload Document"
+      },
+      "validation": {
+        "typeRequired": "Document type is required",
+        "fileRequired": "File is required"
+      },
+      "dropzone": {
+        "uploadFile": "Upload a file",
+        "dragAndDrop": "Drag and drop or click to upload",
+        "acceptedFormats": "Accepts PNG, JPG, PDF, DOC, DOCX files up to 10MB"
+      }
+    }
+  },
+  "Fulfillments": {
+    "title": "Order Fulfillments",
+    "Table": {
+      "orderId": "Order ID",
+      "client": "Client",
+      "items": "Items",
+      "itemsCount": "{count} item(s)",
+      "status": "Status",
+      "createdAt": "Created At",
+      "openMenu": "Open menu",
+      "actions": "Actions",
+      "view": "View",
+      "copyId": "Copy ID",
+      "noResults": "No results."
+    },
+    "Details": {
+      "orderFulfillmentDetails": "Order Fulfillment Details",
+      "orderFulfillmentId": "Order Fulfillment ID",
+      "orderId": "Order ID",
+      "status": "Status",
+      "orderSummary": "Order Summary",
+      "orderDate": "Order Date",
+      "email": "Email",
+      "total": "Total",
+      "shippingMethod": "Shipping Method",
+      "deliveryDate": "Delivery date",
+      "reseller": "Reseller",
+      "shippingAddress": "Shipping Address",
+      "billingAddress": "Billing Address",
+      "phone": "Phone",
+      "statusHistory": "Status history",
+      "addStatus": "Add status",
+      "timestamp": "Timestamp",
+      "statusDetails": "Status details",
+      "entries": "{count, plural, =1 {entry} other {entries}}",
+      "fulfillmentInformation": "Fulfillment Information",
+      "statusUpdated": "The status has been updated.",
+      "changesSubmitted": "Your changes have been submitted for approval.",
+      "messageSubmitted": "Message submitted successfully.",
+      "billableMaterialsExported": "Billable materials exported successfully.",
+      "exportBillableMaterials": "Export Billable Materials"
+    },
+    "ChangesForm": {
+      "title": "Adjust Quote and Deadline (Available for 24 hours)",
+      "fields": {
+        "proposedDeliveryDate": "Proposed Delivery Date",
+        "productPriceAdjustments": "Product Price Adjustments"
+      },
+      "placeholders": {
+        "selectDeliveryDate": "Select delivery date"
+      },
+      "labels": {
+        "current": "Current"
+      },
+      "buttons": {
+        "submitChanges": "Submit Changes"
+      },
+      "validation": {
+        "pricePositive": "Price must be a positive number"
+      }
+    },
+    "AddStatus": {
+      "title": "Add a status message",
+      "description": "Manually add a custom message to Status History.",
+      "fields": {
+        "message": "Message"
+      },
+      "buttons": {
+        "addStatus": "Add status"
+      },
+      "validation": {
+        "messageRequired": "Message cannot be empty",
+        "messageMaxLength": "Message must be 100 characters or less"
+      }
+    }
+  },
+  "Messages": {
+    "invalidCredentials": "Invalid credentials.",
+    "genericError": "Uh oh! Something went wrong.",
+    "subdomainTaken": "This subdomain is already taken.",
+    "subdomainFailed": "Failed to check subdomain availability.",
+    "success": "Success!",
+    "somethingWentWrong": "Something went wrong. Please try again later."
+  },
+  "Auth": {
+    "invalid_credentials": "Invalid email or password",
+    "email_in_use": "Email already in use",
+    "register_reseller_failed": "Failed to register reseller",
+    "provider_invalid": "Provider invalid or unsupported",
+    "missing_email": "Failed to authenticate - missing email",
+    "user_not_found": "No user found for this email",
+    "google_auth_failed": "Google authentication failed",
+    "email_not_found": "Email not found",
+    "check_email": "Check your email to proceed",
+    "invalid_token": "Invalid token",
+    "token_used": "Token already used",
+    "password_updated": "Password updated!",
+    "invalid_password": "Invalid password"
+  },
+  "Misc": {
+    "or": "or",
+    "back": "Back",
+    "save": "Save",
+    "noResult": "No result.",
+    "search": "Search",
+    "selectAll": "Select all",
+    "selectRow": "Select row",
+    "select": "Select",
+    "actions": "Actions",
+    "viewDetails": "View details",
+    "clearFilters": "Clear Filters",
+    "deleteSelected": "Delete selected items",
+    "changesSaved": "Changes Saved!"
+  }
+}
