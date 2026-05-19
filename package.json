@@ -56,7 +56,7 @@
     "react-dropzone": "^14.3.8",
     "react-hook-form": "^7.54.2",
     "react-page-tracker": "^0.3.1",
-    "stripe": "^17.7.0",
+    "stripe": "^22.1.1",
     "swr": "^2.3.5",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
