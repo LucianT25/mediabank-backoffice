@@ -212,18 +212,52 @@ const ElementContentCard = ({
     );
 };
 
-const NestingDisplay = ({ type, item }: { type: string, item: OrderItem | undefined }) => {
+function getElementNestingLabel(
+    el: Record<string, unknown>,
+    index: number,
+    t: ReturnType<typeof useTranslations>,
+): string {
+    const elType = getElementType(el);
+    const base = t('Orders.Item.elementLabel', { index: index + 1 });
+    if (elType === 'text') {
+        const text = String(el.text ?? '').trim();
+        return text ? `${base} — ${text}` : `${base} — ${t('Orders.Item.elementText')}`;
+    }
+    const svgName = String(el.svgName ?? '').trim();
+    return svgName ? `${base} — ${svgName}` : `${base} — ${t('Orders.Item.elementSvg')}`;
+}
+
+const NestingDisplay = ({
+    type,
+    item,
+    elementId,
+    elementIndex,
+    downloadSuffix,
+}: {
+    type: string;
+    item: OrderItem | undefined;
+    elementId?: string;
+    elementIndex?: number;
+    downloadSuffix?: string;
+}) => {
     const t = useTranslations('Manufacturers.PriceEngine');
     const { data: session } = useSession();
-    const usesType = item?.product?.priceFormula?.includes(`${type}NestingResult`)
+    const usesType = item?.product?.priceFormula?.includes(`${type}NestingResult`);
+
+    const queryParams: Record<string, string | undefined> = {
+        orderItemId: item?.id,
+        type,
+    };
+    if (elementId) {
+        queryParams.elementId = elementId;
+    } else if (elementIndex != null) {
+        queryParams.elementIndex = String(elementIndex);
+    }
 
     const { data: nestingResult, isLoading } = useFetcher({
         route: usesType ? `${routes.priceEngine}/nesting` : undefined,
         token: (session as any)?.accessToken,
-        queryParams: {
-            orderItemId: item?.id,
-            type
-        }
+        queryParams,
     });
 
     if (isLoading) {
@@ -253,7 +287,14 @@ const NestingDisplay = ({ type, item }: { type: string, item: OrderItem | undefi
                 <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold leading-none tracking-tight capitalize">{type}</h3>
                     <button
-                        onClick={() => downloadSVG(nestingResult.preview, `${type}-nesting.svg`)}
+                        onClick={() =>
+                            downloadSVG(
+                                nestingResult.preview,
+                                downloadSuffix
+                                    ? `${type}-${downloadSuffix}-nesting.svg`
+                                    : `${type}-nesting.svg`,
+                            )
+                        }
                         className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3"
                     >
                         <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -287,6 +328,42 @@ const NestingDisplay = ({ type, item }: { type: string, item: OrderItem | undefi
                         <p className="font-semibold">{nestingResult?.usedHeight?.toFixed(2)}mm</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    );
+};
+
+const NESTING_TYPES = ['oracal', 'plexi', 'bond'] as const;
+
+const ElementNestingSection = ({
+    el,
+    index,
+    item,
+    t,
+}: {
+    el: Record<string, unknown>;
+    index: number;
+    item: OrderItem;
+    t: ReturnType<typeof useTranslations>;
+}) => {
+    const elementId = el.id != null ? String(el.id) : undefined;
+    const label = getElementNestingLabel(el, index, t);
+    const downloadSuffix = elementId ?? `element-${index + 1}`;
+
+    return (
+        <div className="space-y-3 rounded-md border p-4">
+            <p className="text-sm font-semibold">{label}</p>
+            <div className="space-y-3">
+                {NESTING_TYPES.map((type) => (
+                    <NestingDisplay
+                        key={`${elementId ?? index}-${type}`}
+                        type={type}
+                        item={item}
+                        elementId={elementId}
+                        elementIndex={elementId ? undefined : index}
+                        downloadSuffix={downloadSuffix}
+                    />
+                ))}
             </div>
         </div>
     );
@@ -539,9 +616,21 @@ function FulfillmentOrderItem({
 
                     <div className="md:col-span-2 space-y-4 pt-4 border-t">
                         <h5 className="font-bold">{t('Manufacturers.PriceEngine.nesting')}</h5>
-                        <NestingDisplay type="oracal" item={item} />
-                        <NestingDisplay type="plexi" item={item} />
-                        <NestingDisplay type="bond" item={item} />
+                        {hasElements ? (
+                            elements.map((el, idx) => (
+                                <ElementNestingSection
+                                    key={String(el.id ?? idx)}
+                                    el={el}
+                                    index={idx}
+                                    item={item}
+                                    t={t}
+                                />
+                            ))
+                        ) : (
+                            NESTING_TYPES.map((type) => (
+                                <NestingDisplay key={type} type={type} item={item} />
+                            ))
+                        )}
                     </div>
                 </div>
             </div>
