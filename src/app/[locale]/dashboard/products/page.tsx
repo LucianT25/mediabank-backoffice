@@ -16,10 +16,14 @@ export default async function ProductsPage({
 ) {
     const queryString = parseSearchParams(await searchParams);
     const t = await getTranslations('Products');
+    const tMessages = await getTranslations('Messages');
     const products = await serverFetch(routes.product + '?' + queryString);
 
     return <div className="px-10 py-4">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
-        <ProductsTable rows={products.data.rows ?? []} total={products.data.total}/>
+        {products.error && (
+            <p className="mt-4 text-sm text-destructive">{tMessages('genericError')}</p>
+        )}
+        <ProductsTable rows={products.data?.rows ?? []} total={products.data?.total ?? 0}/>
     </div>;
 }
