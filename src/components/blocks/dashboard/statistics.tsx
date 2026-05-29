@@ -146,7 +146,7 @@ export const Statistics: React.FC<StatisticsProps> = ({stats}) => {
                                                         </p>
                                                     </div>
                                                     <p className="text-sm mt-2 font-bold">
-                                                        {formatCurrency(order.total)}
+                                                        {formatCurrency(Number(order.total))}
                                                     </p>
                                                 </CardContent>
                                             </Card>

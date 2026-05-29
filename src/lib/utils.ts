@@ -36,7 +36,7 @@ export const isWithin24Hours = (date: string | Date): boolean => {
 }
 
 export const getCustomizationLabel = (
-    customizations: { type: string; options?: { value: string; label: string }[] }[] | undefined,
+    customizations: { type: string; options?: { value: string; label?: string }[] }[] | undefined,
     type: string,
     value: string,
 ) => {

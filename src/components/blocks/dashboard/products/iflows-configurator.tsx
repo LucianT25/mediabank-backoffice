@@ -42,7 +42,7 @@ export default function IflowsConfigurator({
         },
       );
       toast({ title: t('saved') });
-      await refreshData();
+      await refreshData(`${routes.product}/${productId}`);
     } catch {
       toast({ title: t('saveFailed'), variant: 'destructive' });
     } finally {

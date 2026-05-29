@@ -67,6 +67,15 @@ function hasMaterialFields(source: Record<string, unknown> | null | undefined): 
     return !!(source.faceMaterial || source.sideMaterial || source.extraMaterial || source.ledMaterial);
 }
 
+function isPresent(value: unknown): boolean {
+    return value != null && value !== "";
+}
+
+function displayValue(value: unknown, fallback = "-"): string {
+    if (value == null || value === "") return fallback;
+    return String(value);
+}
+
 const MaterialDisplay = ({ materialId }: { materialId?: string }) => {
     const { data: session } = useSession();
     const { data: material, isLoading } = useFetcher({
@@ -89,38 +98,38 @@ const MaterialsGrid = ({
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {source.faceMaterial && (
+            {isPresent(source.faceMaterial) ? (
                 <div>
                     <p className="text-sm text-muted-foreground">{t('Orders.Item.faceMaterial')}</p>
                     <div className="flex items-center gap-2 mt-1">
                         <MaterialDisplay materialId={String(source.faceMaterial)} />
                     </div>
                 </div>
-            )}
-            {source.sideMaterial && (
+            ) : null}
+            {isPresent(source.sideMaterial) ? (
                 <div>
                     <p className="text-sm text-muted-foreground">{t('Orders.Item.sideMaterial')}</p>
                     <div className="flex items-center gap-2 mt-1">
                         <MaterialDisplay materialId={String(source.sideMaterial)} />
                     </div>
                 </div>
-            )}
-            {source.extraMaterial && (
+            ) : null}
+            {isPresent(source.extraMaterial) ? (
                 <div>
                     <p className="text-sm text-muted-foreground">{t('Orders.Item.extraMaterial')}</p>
                     <div className="flex items-center gap-2 mt-1">
                         <MaterialDisplay materialId={String(source.extraMaterial)} />
                     </div>
                 </div>
-            )}
-            {source.ledMaterial && (
+            ) : null}
+            {isPresent(source.ledMaterial) ? (
                 <div>
                     <p className="text-sm text-muted-foreground">{t('Orders.Item.ledMaterial')}</p>
                     <div className="flex items-center gap-2 mt-1">
                         <MaterialDisplay materialId={String(source.ledMaterial)} />
                     </div>
                 </div>
-            )}
+            ) : null}
         </div>
     );
 };
@@ -164,15 +173,15 @@ const ElementContentCard = ({
                         >
                             <SvgImage svgString={String(el.svgData ?? '')} />
                         </div>
-                        {el.svgName && (
+                        {isPresent(el.svgName) ? (
                             <p className="text-xs text-muted-foreground mt-1">{String(el.svgName)}</p>
-                        )}
+                        ) : null}
                     </div>
                 )}
                 {el.letterHeight != null && (
                     <div>
                         <p className="text-sm text-muted-foreground">{t('Orders.Item.letterHeight')}</p>
-                        <p>{el.letterHeight} cm</p>
+                        <p>{String(el.letterHeight)} cm</p>
                     </div>
                 )}
                 {el.letterWidth != null && (
@@ -184,15 +193,15 @@ const ElementContentCard = ({
                 {el.letterSpacing != null && (
                     <div>
                         <p className="text-sm text-muted-foreground">{t('Orders.Item.letterSpacing')}</p>
-                        <p>{el.letterSpacing}</p>
+                        <p>{displayValue(el.letterSpacing)}</p>
                     </div>
                 )}
-                {el.face && (
+                {isPresent(el.face) ? (
                     <div>
                         <p className="text-sm text-muted-foreground">{t('Orders.Item.face')}</p>
                         <p className="capitalize">{String(el.face)}</p>
                     </div>
-                )}
+                ) : null}
             </div>
             {hasMaterialFields(el) && (
                 <div className="pt-2 border-t">
@@ -404,15 +413,15 @@ function FulfillmentOrderItem({
                                             >
                                                 <SvgImage svgString={String(cfg.svgData ?? '')} />
                                             </div>
-                                            {cfg.svgName && (
+                                            {isPresent(cfg.svgName) ? (
                                                 <p className="text-xs text-muted-foreground mt-1">{String(cfg.svgName)}</p>
-                                            )}
+                                            ) : null}
                                         </div>
                                     )}
                                     {cfg.letterHeight != null && (
                                         <div>
                                             <p className="text-sm text-muted-foreground">{t('Orders.Item.letterHeight')}</p>
-                                            <p>{cfg.letterHeight} cm</p>
+                                            <p>{String(cfg.letterHeight)} cm</p>
                                         </div>
                                     )}
                                     {cfg.letterWidth != null && (
@@ -424,7 +433,7 @@ function FulfillmentOrderItem({
                                     {(cfg.signType ?? cfg.type) === 'text' && cfg.letterSpacing != null && (
                                         <div>
                                             <p className="text-sm text-muted-foreground">{t('Orders.Item.letterSpacing')}</p>
-                                            <p>{cfg.letterSpacing}</p>
+                                            <p>{displayValue(cfg.letterSpacing)}</p>
                                         </div>
                                     )}
                                 </>
@@ -443,19 +452,19 @@ function FulfillmentOrderItem({
                                     {dimensionsSource.boxHeight != null && (
                                         <div>
                                             <p className="text-sm text-muted-foreground">{t('Orders.Item.boxHeight')}</p>
-                                            <p>{dimensionsSource.boxHeight} cm</p>
+                                            <p>{displayValue(dimensionsSource.boxHeight)} cm</p>
                                         </div>
                                     )}
                                     {dimensionsSource.boxWidth != null && (
                                         <div>
                                             <p className="text-sm text-muted-foreground">{t('Orders.Item.boxWidth')}</p>
-                                            <p>{dimensionsSource.boxWidth} cm</p>
+                                            <p>{displayValue(dimensionsSource.boxWidth)} cm</p>
                                         </div>
                                     )}
                                     {dimensionsSource.boxDepth != null && (
                                         <div>
                                             <p className="text-sm text-muted-foreground">{t('Orders.Item.boxDepth')}</p>
-                                            <p>{dimensionsSource.boxDepth} cm</p>
+                                            <p>{displayValue(dimensionsSource.boxDepth)} cm</p>
                                         </div>
                                     )}
                                 </>
@@ -478,17 +487,17 @@ function FulfillmentOrderItem({
                                 {mountingValue === Mountings.CutBond ? (
                                     <div>
                                         <p className="text-sm text-muted-foreground">{t('Orders.Item.mountingPadding')}</p>
-                                        <p>{signSettings?.mountingPadding ?? cfg?.mountingPadding ?? 0}cm</p>
+                                        <p>{displayValue(signSettings?.mountingPadding ?? cfg?.mountingPadding, "0")}cm</p>
                                     </div>
                                 ) : (
                                     <>
                                         <div>
                                             <p className="text-sm text-muted-foreground">{t('Orders.Item.mountingWidth')}</p>
-                                            <p>{signSettings?.mountingWidth ?? cfg?.mountingWidth ?? 0}cm</p>
+                                            <p>{displayValue(signSettings?.mountingWidth ?? cfg?.mountingWidth, "0")}cm</p>
                                         </div>
                                         <div>
                                             <p className="text-sm text-muted-foreground">{t('Orders.Item.mountingHeight')}</p>
-                                            <p>{signSettings?.mountingHeight ?? cfg?.mountingHeight ?? 0} cm</p>
+                                            <p>{displayValue(signSettings?.mountingHeight ?? cfg?.mountingHeight, "0")} cm</p>
                                         </div>
                                     </>
                                 )}
@@ -508,7 +517,7 @@ function FulfillmentOrderItem({
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground">{t('Orders.Item.cableLength')}</p>
-                                    <p>{signSettings?.cableLength ?? cfg?.cableLength ?? 1}m</p>
+                                    <p>{displayValue(signSettings?.cableLength ?? cfg?.cableLength, "1")}m</p>
                                 </div>
                             </div>
                         </div>
