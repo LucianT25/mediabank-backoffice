@@ -137,7 +137,7 @@ export const AdminOrdersTable: FC<OrdersTableProps> = ({orders}) => {
     ];
 
     const table = useReactTable({
-        data: orders?.rows,
+        data: orders?.rows ?? [],
         columns,
         pageCount,
         manualPagination: true,

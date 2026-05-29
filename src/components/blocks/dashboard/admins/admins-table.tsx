@@ -291,7 +291,7 @@ export const AdminsTable: FC<AdminsTableProps> = ({ admins, resellers, manufactu
     ];
 
     const table = useReactTable({
-        data: admins?.rows,
+        data: admins?.rows ?? [],
         columns,
         pageCount,
         manualPagination: true,

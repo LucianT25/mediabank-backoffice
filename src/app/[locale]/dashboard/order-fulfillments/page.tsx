@@ -3,6 +3,7 @@ import {parseSearchParams} from "@/lib/utils";
 import {authOptions} from "@/lib/next-auth-options";
 import {getServerSession} from "next-auth";
 import {OrderFulfillmentsTable} from "@/components/blocks/dashboard/orders/order-fulfillments-table";
+import { emptyPaginated } from "@/interfaces/paginated-data.interface";
 import { getTranslations } from "next-intl/server";
 
 type Params = Promise<{ reseller: string }>
@@ -18,6 +19,7 @@ export default async function OrderFulfillmentsPage({
 }) {
     const session = await getServerSession(authOptions as any);
     const t = await getTranslations('Fulfillments');
+    const tMessages = await getTranslations('Messages');
 
     // if (!session) return forbidden();
     // if ((session as any).user?.role !== AdminType.Manufacturer) return forbidden();
@@ -27,6 +29,9 @@ export default async function OrderFulfillmentsPage({
 
     return <div className="px-10 py-4">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
-        <OrderFulfillmentsTable data={orderFulfillments.data ?? []}/>
+        {orderFulfillments.error && (
+            <p className="mt-4 text-sm text-destructive">{tMessages('genericError')}</p>
+        )}
+        <OrderFulfillmentsTable data={orderFulfillments.data ?? emptyPaginated()}/>
     </div>
 }

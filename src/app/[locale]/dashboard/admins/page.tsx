@@ -1,6 +1,7 @@
 import {routes, serverFetch} from "@/lib/fetcher";
 import {parseSearchParams} from "@/lib/utils";
 import {AdminsTable} from "@/components/blocks/dashboard/admins/admins-table";
+import { emptyPaginated } from "@/interfaces/paginated-data.interface";
 import { getTranslations } from "next-intl/server";
 
 type Params = Promise<{ reseller: string }>
@@ -22,6 +23,6 @@ export default async function AdminsPage({
 
     return <div className="px-10 py-4">
         <h1 className="text-2xl font-bold">{t('title')}</h1>
-        <AdminsTable admins={admins.data ?? []} resellers={resellers.data ?? []} manufacturers={manufacturers.data ?? []}/>
+        <AdminsTable admins={admins.data ?? emptyPaginated()} resellers={resellers.data ?? []} manufacturers={manufacturers.data ?? []}/>
     </div>
 }
