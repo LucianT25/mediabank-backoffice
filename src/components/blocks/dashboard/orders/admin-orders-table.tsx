@@ -23,6 +23,7 @@ import {routes, submitData} from "@/lib/fetcher";
 import {useSession} from "next-auth/react";
 import {refreshData} from "@/lib/server-actions";
 import {PaginatedData} from "@/interfaces/paginated-data.interface";
+import { formatCurrency } from "@/lib/currency";
 import {Pagination} from "@/components/ui/pagination";
 import {useToast} from "@/hooks/use-toast";
 import {useTableFilters} from "@/hooks/use-table-filters";
@@ -91,7 +92,7 @@ export const AdminOrdersTable: FC<OrdersTableProps> = ({orders}) => {
                 <Button variant="ghost" onClick={() => setSort("total")}>{t('total')} <ArrowUpDown
                     className="ml-2 size-4"/></Button>
             ),
-            cell: ({ row }) => <div>${(row.getValue("total") as number)?.toFixed(2) ?? '0.00'}</div>,
+            cell: ({ row }) => <div>{formatCurrency(row.getValue("total") as number)}</div>,
         },
         {
             accessorKey: "status",

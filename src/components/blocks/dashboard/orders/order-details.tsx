@@ -9,6 +9,7 @@ import {
     TruckIcon
 } from "lucide-react";
 import {formatDate, isWithin24Hours} from "@/lib/utils";
+import { formatCurrency } from "@/lib/currency";
 import {routes, submitData} from "@/lib/fetcher";
 import {useSession} from "next-auth/react";
 import {refreshData} from "@/lib/server-actions";
@@ -153,7 +154,7 @@ export function OrderDetails({order}: { order: Order }) {
                         </div>
                         <div className="flex justify-between">
                             <span className="text-muted-foreground">{t('total')}</span>
-                            <span className="font-semibold">${Number(order.total)?.toFixed(2) ?? '0.00'}</span>
+                            <span className="font-semibold">{formatCurrency(order.total)}</span>
                         </div>
                         <div className="flex justify-between">
                             <span className="text-muted-foreground">{t('shippingMethod')}</span>

@@ -23,6 +23,7 @@ import {Separator} from "@/components/ui/separator";
 import {routes, submitData} from "@/lib/fetcher";
 import {useSession} from "next-auth/react";
 import { useToast } from '@/hooks/use-toast'
+import { DEFAULT_CURRENCY } from '@/lib/currency'
 
 // Zod schema based on full Material interface
 const materialSchema = z.object({
@@ -34,6 +35,7 @@ const materialSchema = z.object({
     colorStandard: z.string().optional(),
     colorFinish: z.string().optional(),
     productAlias: z.string().optional(),
+    iflowsProductCode: z.string().optional(),
     currency: z.string().min(1),
     salesUnit: z.string().min(1),
     purchasePrice: z.coerce.number().min(0),
@@ -76,7 +78,8 @@ export default function MaterialForm({
             colorStandard: '',
             colorFinish: '',
             productAlias: '',
-            currency: '',
+            iflowsProductCode: '',
+            currency: DEFAULT_CURRENCY,
             salesUnit: '',
             purchasePrice: 0,
             addedPrice: 0,
@@ -172,6 +175,30 @@ export default function MaterialForm({
                                 )}
                             />
                         ))}
+                    </div>
+                </div>
+
+                {/* iFlows */}
+                <div className="grid gap-4">
+                    <h3 className="leading-none font-semibold">{t('Materials.Form.iflows')}</h3>
+                    <Separator/>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <FormField
+                            control={form.control}
+                            name="iflowsProductCode"
+                            render={({field}) => (
+                                <FormItem>
+                                    <FormLabel>{t('Materials.Fields.iflowsProductCode')}</FormLabel>
+                                    <FormControl>
+                                        <Input {...field} value={field.value ?? ''} />
+                                    </FormControl>
+                                    <FormDescription>
+                                        {t('Materials.Fields.iflowsProductCodeDescription')}
+                                    </FormDescription>
+                                    <FormMessage/>
+                                </FormItem>
+                            )}
+                        />
                     </div>
                 </div>
 

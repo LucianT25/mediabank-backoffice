@@ -32,6 +32,8 @@ export interface Product {
   mountingConfiguration?: { nodes: any[]; edges: any[] };
   extrasFormula?: string;
   extrasConfiguration?: { nodes: any[]; edges: any[] };
+  iflowsProductCode?: string;
+  iflowsAdministration?: string;
 }
 
 export enum ProductType {

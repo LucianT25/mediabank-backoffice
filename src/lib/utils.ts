@@ -34,3 +34,18 @@ export const isWithin24Hours = (date: string | Date): boolean => {
     
     return diffInHours < 24;
 }
+
+export const getCustomizationLabel = (
+    customizations: { type: string; options?: { value: string; label: string }[] }[] | undefined,
+    type: string,
+    value: string,
+) => {
+    if (!value) return '-';
+    if (!customizations) return value;
+
+    const customization = customizations.find((c) => c.type === type);
+    if (!customization) return value;
+
+    const option = customization.options?.find((o) => o.value === value);
+    return option?.label ?? value;
+};

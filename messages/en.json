@@ -488,7 +488,40 @@
     "Item": {
       "title": "Items",
       "quote": "Quote",
-      "customQuoteMessage": "Custom Quote Description"
+      "customQuoteMessage": "Custom Quote Description",
+      "content": "Content",
+      "signType": "Sign Type",
+      "text": "Text",
+      "svgData": "Svg Data",
+      "font": "Font",
+      "letterHeight": "Letter Height",
+      "letterWidth": "Letter Width",
+      "letterSpacing": "Letter Spacing",
+      "elementLabel": "Element #{index}",
+      "elementText": "Text",
+      "elementSvg": "SVG",
+      "face": "Face",
+      "boxHeight": "Box Height",
+      "boxWidth": "Box Width",
+      "boxDepth": "Box Depth",
+      "extras": "Extras",
+      "mountingSection": "Mounting",
+      "mounting": "Mounting",
+      "mountingColor": "Mounting Color",
+      "mountingPadding": "Mounting Padding",
+      "mountingWidth": "Mounting Width",
+      "mountingHeight": "Mounting Height",
+      "isExterior": "Is Exterior",
+      "lightSensor": "Light Sensor",
+      "cableLength": "Cable Length",
+      "materials": "Materials",
+      "faceMaterial": "Face Color",
+      "sideMaterial": "Side Color",
+      "extraMaterial": "Extra Color",
+      "ledMaterial": "LED Color",
+      "yes": "Yes",
+      "no": "No",
+      "viewInConfigurator": "View in configurator"
     }
   },
   "Products": {
@@ -518,7 +551,8 @@
       "confirmDeleteMultiple": "Are you sure you want to delete these {count} products?",
       "manufacturerDisabled": "The manufacturer of this product is disabled.",
       "productNotVisible": "This product will not show in the shop.",
-      "editCustomizations": "Edit customizations"
+      "editCustomizations": "Edit customizations",
+      "editIflowsMapping": "Edit iFlows mapping"
     },
     "Modal": {
       "title": "Product Details",
@@ -602,6 +636,18 @@
         "noMaterials": "No materials found.",
         "noSearchResults": "No materials found matching your search."
       }
+    },
+    "Iflows": {
+      "title": "iFlows Product Mapping",
+      "description": "Map this product to its iFlows product code used when sending orders.",
+      "productCode": "iFlows product code",
+      "productCodePlaceholder": "e.g. TRIC-001",
+      "administration": "Administration (gestiune) ID",
+      "administrationPlaceholder": "Optional, e.g. 1",
+      "save": "Save",
+      "saving": "Saving...",
+      "saved": "iFlows mapping saved.",
+      "saveFailed": "Failed to save iFlows mapping."
     }
   },
   "Materials": {
@@ -626,7 +672,8 @@
       "color": "Color",
       "sizeUnits": "Size & Units",
       "pricing": "Pricing",
-      "optimizationOthers": "Optimization & Other"
+      "optimizationOthers": "Optimization & Other",
+      "iflows": "iFlows"
     },
     "Fields": {
       "id": "ID",
@@ -641,6 +688,8 @@
       "aspectGlossy": "Glossy",
       "aspectMatte": "Matte",
       "productAlias": "Product Alias",
+      "iflowsProductCode": "iFlows product code",
+      "iflowsProductCodeDescription": "Product code in iFlows used when this material is sent as a subproduct on orders.",
       "currency": "Currency",
       "salesUnit": "Sales Unit",
       "purchasePrice": "Purchase Price",
@@ -733,7 +782,19 @@
       "changesSubmitted": "Your changes have been submitted for approval.",
       "messageSubmitted": "Message submitted successfully.",
       "billableMaterialsExported": "Billable materials exported successfully.",
-      "exportBillableMaterials": "Export Billable Materials"
+      "exportBillableMaterials": "Export Billable Materials",
+      "billOfMaterials": "Bill of Materials",
+      "loadingBom": "Loading bill of materials…",
+      "noBomData": "No billable materials computed for this fulfillment.",
+      "bomMaterial": "Material",
+      "bomRole": "Role",
+      "bomElement": "Element",
+      "bomUnit": "Unit",
+      "bomUsagePerSign": "Usage (per sign)",
+      "bomQuantity": "Qty",
+      "bomUnitPrice": "Unit price",
+      "bomLineTotal": "Line total",
+      "bomSubtotal": "Subtotal"
     },
     "ChangesForm": {
       "title": "Adjust Quote and Deadline (Available for 24 hours)",

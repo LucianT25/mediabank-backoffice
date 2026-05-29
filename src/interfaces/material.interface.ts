@@ -7,6 +7,7 @@ export interface Material {
     colorStandard: string;
     colorFinish: string;
     productAlias: string;
+    iflowsProductCode?: string;
     currency: string;
     salesUnit: string;
     purchasePrice: number;

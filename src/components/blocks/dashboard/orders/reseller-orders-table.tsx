@@ -37,6 +37,7 @@ import {Order} from "@/interfaces/order.interface";
 import Link from "next/link";
 import { StatusBadge } from "@/components/ui/status-badge";
 import { useTranslations } from "next-intl";
+import { formatCurrency } from "@/lib/currency";
 
 
 export interface OrdersTableProps {
@@ -72,7 +73,7 @@ export const ResellerOrdersTable: FC<OrdersTableProps> = ({orders}) => {
         {
             accessorKey: "total",
             header: () => <Button variant="ghost" onClick={() => setSort("total")}>{t('total')} <ArrowUpDown/></Button>,
-            cell: ({ row }) => <div>${Number(row.getValue("total"))?.toFixed(2) ?? '0.00'}</div>
+            cell: ({ row }) => <div>{formatCurrency(row.getValue("total") as number)}</div>
         },
         {
             accessorKey: "status",

@@ -7,13 +7,14 @@ import {
     TruckIcon
 } from "lucide-react";
 import {formatDate} from "@/lib/utils";
+import { formatCurrency } from "@/lib/currency";
 import {clientFetch, routes, submitData} from "@/lib/fetcher";
 import {useSession} from "next-auth/react";
 import {refreshData} from "@/lib/server-actions";
 import {useToast} from "@/hooks/use-toast";
 import * as React from "react";
 import {Label} from "@/components/ui/label";
-import {useMemo, useState} from "react";
+import {useMemo, useState, useEffect} from "react";
 import {FulfillmentItem} from "@/components/blocks/dashboard/orders/fulfillment-item";
 import {OrderFulfillment} from "@/interfaces/order-fulfillment.interface";
 import { FulfillmentChangesForm } from "./fulfillment-changes-form";
@@ -23,6 +24,7 @@ import { useTranslations } from "next-intl";
 import { StatusHistory } from "@/components/blocks/dashboard/orders/status-history";
 import { Documents } from "./documents";
 import { Button } from "@/components/ui/button";
+import { BillOfMaterialsTable, type BomLine } from "@/components/blocks/dashboard/orders/bill-of-materials-table";
 
 export function OrderFulfillmentDetails({orderFulfillment}: { orderFulfillment: OrderFulfillment }) {
     const { toast } = useToast();
@@ -31,6 +33,30 @@ export function OrderFulfillmentDetails({orderFulfillment}: { orderFulfillment: 
     const {data: session } = useSession();
     const role = useMemo(() => (session?.user as any)?.role, [session]);
     const [statusModalOpen, setStatusModalOpen] = useState(false);
+    const [bomLines, setBomLines] = useState<BomLine[]>([]);
+    const [bomLoading, setBomLoading] = useState(true);
+
+    useEffect(() => {
+        let cancelled = false;
+        const loadBom = async () => {
+            setBomLoading(true);
+            try {
+                const response = await clientFetch(
+                    `${routes.orderFulfillment}/bill-of-materials/${orderFulfillment.id}`,
+                    (session as any)?.accessToken,
+                );
+                if (!cancelled && response.data?.lines) {
+                    setBomLines(response.data.lines);
+                }
+            } catch (e) {
+                console.error(e);
+            } finally {
+                if (!cancelled) setBomLoading(false);
+            }
+        };
+        if (session) loadBom();
+        return () => { cancelled = true; };
+    }, [orderFulfillment.id, session]);
 
     const updateItemStatus = async (itemId: string, status: string) => {
         let response;
@@ -222,7 +248,7 @@ export function OrderFulfillmentDetails({orderFulfillment}: { orderFulfillment: 
                         </div>
                         <div className="flex justify-between">
                             <span className="text-muted-foreground">{t('total')}</span>
-                            <span className="font-semibold">${Number(orderFulfillment.order.total)?.toFixed(2) ?? '0.00'}</span>
+                            <span className="font-semibold">{formatCurrency(orderFulfillment.order.total)}</span>
                         </div>
                         <div className="flex justify-between">
                             <span className="text-muted-foreground">{t('shippingMethod')}</span>
@@ -306,7 +332,15 @@ export function OrderFulfillmentDetails({orderFulfillment}: { orderFulfillment: 
                     <CardTitle>{t('fulfillmentInformation')}</CardTitle>
                     <Button onClick={() => exportBillableMaterials(orderFulfillment)}>{t('exportBillableMaterials')}</Button>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="space-y-6">
+                    <div>
+                        <h3 className="font-medium mb-3">{t('billOfMaterials')}</h3>
+                        {bomLoading ? (
+                            <p className="text-sm text-muted-foreground">{t('loadingBom')}</p>
+                        ) : (
+                            <BillOfMaterialsTable lines={bomLines} />
+                        )}
+                    </div>
                     <FulfillmentItem fulfillment={orderFulfillment} onStatusUpdate={updateItemStatus}/>
                 </CardContent>
             </Card>

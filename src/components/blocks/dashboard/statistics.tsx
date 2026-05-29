@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/com
 import { StatusBadge } from "@/components/ui/status-badge";
 import { StatsResponse } from "@/interfaces/stats.interface";
 import { formatDate } from "@/lib/utils";
+import { formatCurrency } from "@/lib/currency";
 import { ClockIcon, ArrowDownIcon, ArrowUpIcon } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { AdminType } from "@/interfaces/user.interface";
@@ -107,10 +108,10 @@ export const Statistics: React.FC<StatisticsProps> = ({stats}) => {
                     </CardHeader>
                     <CardContent>
                         <div className="text-4xl font-bold">
-                            $<AnimatedNumber value={stats?.totalRevenue || 0} />
+                            <AnimatedNumber value={stats?.totalRevenue || 0} prefix="€" decimals={2} />
                         </div>
                         <p className="text-xs text-muted-foreground">
-                            {t('last30Days')}: ${stats?.revenueGrowth?.previous || 0}
+                            {t('last30Days')}: {formatCurrency(stats?.revenueGrowth?.previous)}
                         </p>
                     </CardContent>
                 </Card>
@@ -145,7 +146,7 @@ export const Statistics: React.FC<StatisticsProps> = ({stats}) => {
                                                         </p>
                                                     </div>
                                                     <p className="text-sm mt-2 font-bold">
-                                                        ${order.total}
+                                                        {formatCurrency(order.total)}
                                                     </p>
                                                 </CardContent>
                                             </Card>

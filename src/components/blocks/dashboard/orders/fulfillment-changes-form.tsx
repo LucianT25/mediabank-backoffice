@@ -6,6 +6,7 @@ import { DatePicker } from "@/components/ui/date-picker"
 import { Input } from "@/components/ui/input"
 import { OrderFulfillment } from "@/interfaces/order-fulfillment.interface"
 import { isWithin24Hours } from "@/lib/utils"
+import { formatCurrency } from "@/lib/currency"
 import { PackageIcon } from "lucide-react"
 import { FC } from "react"
 import { Button } from "@/components/ui/button"
@@ -103,11 +104,11 @@ export const FulfillmentChangesForm: FC<FulfillmentChangesFormProps> = ({ fulfil
                                                 render={({ field: quoteField }) => (
                                                     <FormItem className="min-w-[150px] mb-0">
                                                         <FormLabel className="text-xs">
-                                                            {t('labels.current')}: ${Number(fulfillment.items[index].price)?.toFixed(2) ?? '0.00'}
+                                                            {t('labels.current')}: {formatCurrency(fulfillment.items[index].price)}
                                                         </FormLabel>
                                                         <FormControl>
                                                             <div className="flex items-center">
-                                                                <span className="mr-1 text-sm">$</span>
+                                                                <span className="mr-1 text-sm">€</span>
                                                                 <Input
                                                                     type="number"
                                                                     min="0"

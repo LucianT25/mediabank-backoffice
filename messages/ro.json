@@ -488,8 +488,40 @@
     "Item": {
       "title": "Articole",
       "quote": "Cotație",
-      "customQuoteMessage": "Descriere ofertă personalizată"
-
+      "customQuoteMessage": "Descriere ofertă personalizată",
+      "content": "Conținut",
+      "signType": "Tip semn",
+      "text": "Text",
+      "svgData": "Date SVG",
+      "font": "Font",
+      "letterHeight": "Înălțime litere",
+      "letterWidth": "Lățime litere",
+      "letterSpacing": "Spațiere litere",
+      "elementLabel": "Element #{index}",
+      "elementText": "Text",
+      "elementSvg": "SVG",
+      "face": "Față",
+      "boxHeight": "Înălțime cutie",
+      "boxWidth": "Lățime cutie",
+      "boxDepth": "Adâncime cutie",
+      "extras": "Extra",
+      "mountingSection": "Montaj",
+      "mounting": "Montaj",
+      "mountingColor": "Culoare montaj",
+      "mountingPadding": "Padding montaj",
+      "mountingWidth": "Lățime montaj",
+      "mountingHeight": "Înălțime montaj",
+      "isExterior": "Exterior",
+      "lightSensor": "Senzor lumină",
+      "cableLength": "Lungime cablu",
+      "materials": "Materiale",
+      "faceMaterial": "Culoare față",
+      "sideMaterial": "Culoare laterală",
+      "extraMaterial": "Culoare extra",
+      "ledMaterial": "Culoare LED",
+      "yes": "Da",
+      "no": "Nu",
+      "viewInConfigurator": "Vezi în configurator"
     }
   },
   "Products": {
@@ -519,7 +551,8 @@
       "confirmDeleteMultiple": "Sigur că doriți să ștergeți aceste {count} produse?",
       "manufacturerDisabled": "Producătorul acestui produs este dezactivat.",
       "productNotVisible": "Acest produs nu va fi afișat în magazin.",
-      "editCustomizations": "Editați personalizările produsului"
+      "editCustomizations": "Editați personalizările produsului",
+      "editIflowsMapping": "Editați maparea iFlows"
     },
     "Modal": {
       "title": "Detalii produs",
@@ -603,6 +636,18 @@
         "noMaterials": "Nu s-au găsit materiale.",
         "noSearchResults": "Nu s-au găsit materiale care să corespundă căutării."
       }
+    },
+    "Iflows": {
+      "title": "Mapare produs iFlows",
+      "description": "Mapați acest produs la codul de produs iFlows folosit la trimiterea comenzilor.",
+      "productCode": "Cod produs iFlows",
+      "productCodePlaceholder": "ex. TRIC-001",
+      "administration": "ID administrare (gestiune)",
+      "administrationPlaceholder": "Opțional, ex. 1",
+      "save": "Salvează",
+      "saving": "Se salvează...",
+      "saved": "Maparea iFlows a fost salvată.",
+      "saveFailed": "Salvarea mapării iFlows a eșuat."
     }
   },
   "Materials": {
@@ -627,7 +672,8 @@
       "color": "Culoare",
       "sizeUnits": "Dimensiuni și unități",
       "pricing": "Preț",
-      "optimizationOthers": "Optimizare și altele"
+      "optimizationOthers": "Optimizare și altele",
+      "iflows": "iFlows"
     },
     "Fields": {
       "id": "ID",
@@ -642,6 +688,8 @@
       "aspectGlossy": "Lucios",
       "aspectMatte": "Mat",
       "productAlias": "Alias Produs",
+      "iflowsProductCode": "Cod produs iFlows",
+      "iflowsProductCodeDescription": "Codul produsului în iFlows folosit când materialul este trimis ca subprodus în comenzi.",
       "currency": "Moneda",
       "salesUnit": "Unitate Vânzare",
       "purchasePrice": "Preț achiziție",
@@ -734,7 +782,19 @@
       "changesSubmitted": "Modificările dvs. au fost trimise pentru aprobare.",
       "messageSubmitted": "Mesaj trimis cu succes.",
       "billableMaterialsExported": "Materialele facturabile au fost exportate cu succes.",
-      "exportBillableMaterials": "Exportați materialele facturabile"
+      "exportBillableMaterials": "Exportați materialele facturabile",
+      "billOfMaterials": "Lista de materiale",
+      "loadingBom": "Se încarcă lista de materiale…",
+      "noBomData": "Nu există materiale facturabile calculate pentru această livrare.",
+      "bomMaterial": "Material",
+      "bomRole": "Rol",
+      "bomElement": "Element",
+      "bomUnit": "Unitate",
+      "bomUsagePerSign": "Utilizare (per semn)",
+      "bomQuantity": "Cant.",
+      "bomUnitPrice": "Preț unitar",
+      "bomLineTotal": "Total linie",
+      "bomSubtotal": "Subtotal"
     },
     "ChangesForm": {
       "title": "Ajustează cotația și termenul limită (Disponibil pentru 24 de ore)",
