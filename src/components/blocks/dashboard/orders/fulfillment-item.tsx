@@ -106,7 +106,7 @@ const MaterialsGrid = ({
                     </div>
                 </div>
             ) : null}
-            {isPresent(source.sideMaterial) ? (
+            {isPresent(source.sideMaterial) && source.isSingleColor === false ? (
                 <div>
                     <p className="text-sm text-muted-foreground">{t('Orders.Item.sideMaterial')}</p>
                     <div className="flex items-center gap-2 mt-1">
