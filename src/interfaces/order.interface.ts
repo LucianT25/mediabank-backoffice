@@ -40,6 +40,12 @@ export interface Document {
     name: string;
 }
 
+export enum IflowsSyncStatus {
+    created = 'created',
+    paid = 'paid',
+    failed = 'failed',
+}
+
 export enum OrderStatus {
     awaitingPayment = 'awaiting-payment',
     paid = 'paid',
@@ -77,6 +83,12 @@ export interface Order {
     deliveryDate?: Date;
 
     paymentIntentId: string;
+
+    iflowsOrderId?: string;
+
+    iflowsSyncStatus?: IflowsSyncStatus;
+
+    iflowsLastSyncError?: string;
 
     fulfillments: OrderFulfillment[];
 

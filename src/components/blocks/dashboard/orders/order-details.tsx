@@ -24,6 +24,7 @@ import { useTranslations } from "next-intl";
 import { StatusHistory } from "@/components/blocks/dashboard/orders/status-history";
 import { Documents } from "@/components/blocks/dashboard/orders/documents";
 import DocumentModal from "@/components/blocks/dashboard/orders/document-modal";
+import { IflowsSyncCard } from "@/components/blocks/dashboard/orders/iflows-sync-status";
 
 export function OrderDetails({order}: { order: Order }) {
     const { toast } = useToast();
@@ -233,6 +234,8 @@ export function OrderDetails({order}: { order: Order }) {
                     </CardContent>
                 </Card>
             }
+
+            <IflowsSyncCard order={order} />
 
             {/* Status History */}
             <StatusHistory 

@@ -483,7 +483,21 @@
       "fulfillmentInformation": "Fulfillment Information",
       "statusUpdated": "The status has been updated.",
       "changesStatus": "Changes {status}.",
-      "documentUploaded": "Document uploaded."
+      "documentUploaded": "Document uploaded.",
+      "Iflows": {
+        "title": "iFlows Sync",
+        "syncStatus": "Sync status",
+        "iflowsOrderId": "iFlows order ID",
+        "syncError": "Sync error",
+        "retrySync": "Retry sync",
+        "syncSucceeded": "Order synced to iFlows successfully.",
+        "syncFailed": "Failed to sync order to iFlows.",
+        "statusSynced": "Synced",
+        "statusFailed": "Failed",
+        "statusPending": "Not synced",
+        "statusNotApplicable": "Not applicable",
+        "paidRequired": "The order must be paid before it can be synced to iFlows."
+      }
     },
     "Item": {
       "title": "Items",

@@ -483,7 +483,21 @@
       "fulfillmentInformation": "Informații de îndeplinire",
       "statusUpdated": "Statusul a fost actualizat.",
       "changesStatus": "Modificări {status}.",
-      "documentUploaded": "Documentul a fost încărcat."
+      "documentUploaded": "Documentul a fost încărcat.",
+      "Iflows": {
+        "title": "Sincronizare iFlows",
+        "syncStatus": "Status sincronizare",
+        "iflowsOrderId": "ID comandă iFlows",
+        "syncError": "Eroare sincronizare",
+        "retrySync": "Reîncearcă sincronizarea",
+        "syncSucceeded": "Comanda a fost sincronizată cu succes în iFlows.",
+        "syncFailed": "Sincronizarea comenzii cu iFlows a eșuat.",
+        "statusSynced": "Sincronizat",
+        "statusFailed": "Eșuat",
+        "statusPending": "Nesincronizat",
+        "statusNotApplicable": "Nu se aplică",
+        "paidRequired": "Comanda trebuie să fie plătită înainte de a putea fi sincronizată cu iFlows."
+      }
     },
     "Item": {
       "title": "Articole",
