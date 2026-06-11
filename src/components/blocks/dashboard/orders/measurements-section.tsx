@@ -5,7 +5,6 @@ import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { Loader2, Download, ChevronsLeftRight, ChevronsUpDown, SquareDashed, ChevronDownIcon } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
-import { SvgImage } from "@/components/ui/svg-image";
 import { routes } from "@/lib/fetcher";
 import { useFetcher } from "@/hooks/use-fetcher";
 import { OrderItem } from "@/interfaces/order.interface";
@@ -72,20 +71,14 @@ function usesNestingType(item: OrderItem | undefined, type: string): boolean {
     return !!item?.product?.priceFormula?.includes(key);
 }
 
-function DownloadButton({
-    label,
-    onClick,
-}: {
-    label: string;
-    onClick: () => void;
-}) {
+function DownloadLink({ label, onClick }: { label: string; onClick: () => void }) {
     return (
         <button
             type="button"
             onClick={onClick}
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3"
+            className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
         >
-            <Download className="mr-2 h-4 w-4" />
+            <Download className="h-3.5 w-3.5" />
             {label}
         </button>
     );
@@ -94,46 +87,63 @@ function DownloadButton({
 function SvgPreviewPanel({
     svg,
     alt,
-    className = "relative w-full aspect-[16/10] min-h-[200px] max-h-[420px] border rounded-md bg-slate-50 overflow-hidden",
 }: {
     svg?: string;
     alt: string;
-    className?: string;
 }) {
     if (!svg) {
         return (
-            <div className={`${className} flex items-center justify-center text-sm text-muted-foreground`}>
+            <div className="relative w-full aspect-[16/10] min-h-[180px] max-h-[380px] rounded bg-muted/40 flex items-center justify-center text-sm text-muted-foreground">
                 No preview available
             </div>
         );
     }
     return (
-        <div className={className}>
-            <SvgImage svgString={svg} className="object-contain p-2" />
-            <span className="sr-only">{alt}</span>
-        </div>
+        <div
+            className="relative w-full aspect-[16/10] min-h-[180px] max-h-[380px] rounded bg-muted/40 overflow-hidden [&_svg]:h-full [&_svg]:w-full [&_svg]:block"
+            role="img"
+            aria-label={alt}
+            dangerouslySetInnerHTML={{ __html: svg }}
+        />
     );
 }
 
-function MetricCard({
+function MetricInline({
     label,
     value,
-    hint,
 }: {
     label: string;
     value: string;
-    hint?: string;
 }) {
     return (
-        <div className="rounded-lg border bg-card p-4 shadow-sm">
-            <p className="text-sm text-muted-foreground">{label}</p>
-            <p className="text-xl font-semibold mt-1">{value}</p>
-            {hint ? <p className="text-xs text-muted-foreground mt-1">{hint}</p> : null}
+        <div>
+            <p className="text-xs text-muted-foreground">{label}</p>
+            <p className="text-sm font-semibold mt-0.5">{value}</p>
         </div>
     );
 }
 
-function NestingCard({
+function SubsectionHeading({
+    title,
+    hint,
+    actions,
+}: {
+    title: string;
+    hint?: string;
+    actions?: React.ReactNode;
+}) {
+    return (
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+                <h4 className="text-sm font-semibold">{title}</h4>
+                {hint ? <p className="text-xs text-muted-foreground mt-0.5">{hint}</p> : null}
+            </div>
+            {actions ? <div className="flex flex-wrap gap-3 shrink-0">{actions}</div> : null}
+        </div>
+    );
+}
+
+function NestingRow({
     nesting,
     t,
     downloadSuffix,
@@ -148,11 +158,11 @@ function NestingCard({
             : t(`Manufacturers.PriceEngine.${nesting.type}` as "Manufacturers.PriceEngine.plexi");
 
     return (
-        <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div className="flex flex-col space-y-1.5 p-6">
-                <div className="flex items-center justify-between gap-3 flex-wrap">
-                    <h3 className="text-lg font-semibold leading-none tracking-tight capitalize">{typeLabel}</h3>
-                    <DownloadButton
+        <div className="space-y-3 pt-4 first:pt-0">
+            <SubsectionHeading
+                title={typeLabel}
+                actions={
+                    <DownloadLink
                         label={t("Manufacturers.PriceEngine.download")}
                         onClick={() =>
                             downloadSVG(
@@ -163,42 +173,35 @@ function NestingCard({
                             )
                         }
                     />
+                }
+            />
+            <SvgPreviewPanel svg={nesting.preview} alt={`${nesting.type} nesting layout`} />
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-3">
+                <div className="flex items-center gap-2">
+                    <ChevronsLeftRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                    <MetricInline
+                        label={t("Manufacturers.PriceEngine.sheetWidth")}
+                        value={`${nesting.sheetWidthMm?.toFixed(2)} mm`}
+                    />
                 </div>
-            </div>
-            <div className="px-6 pb-4">
-                <SvgPreviewPanel
-                    svg={nesting.preview}
-                    alt={`${nesting.type} nesting layout`}
+                <div className="flex items-center gap-2">
+                    <ChevronsUpDown className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                    <MetricInline
+                        label={t("Manufacturers.PriceEngine.sheetHeight")}
+                        value={`${nesting.sheetHeightMm?.toFixed(2)} mm`}
+                    />
+                </div>
+                <div className="flex items-center gap-2">
+                    <SquareDashed className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                    <MetricInline
+                        label={t("Manufacturers.PriceEngine.usedHeight")}
+                        value={`${nesting.usedHeightMm?.toFixed(2)} mm`}
+                    />
+                </div>
+                <MetricInline
+                    label={t("Orders.Item.measurementsSheetUsage")}
+                    value={`${nesting.sheetAreaM2?.toFixed(4)} m²`}
                 />
-            </div>
-            <div className="p-6 pt-0">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div className="flex flex-col space-y-1.5">
-                        <div className="flex items-center space-x-2">
-                            <ChevronsLeftRight className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-sm font-medium leading-none">{t("Manufacturers.PriceEngine.sheetWidth")}</span>
-                        </div>
-                        <p className="font-semibold">{nesting.sheetWidthMm?.toFixed(2)} mm</p>
-                    </div>
-                    <div className="flex flex-col space-y-1.5">
-                        <div className="flex items-center space-x-2">
-                            <ChevronsUpDown className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-sm font-medium leading-none">{t("Manufacturers.PriceEngine.sheetHeight")}</span>
-                        </div>
-                        <p className="font-semibold">{nesting.sheetHeightMm?.toFixed(2)} mm</p>
-                    </div>
-                    <div className="flex flex-col space-y-1.5">
-                        <div className="flex items-center space-x-2">
-                            <SquareDashed className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-sm font-medium leading-none">{t("Manufacturers.PriceEngine.usedHeight")}</span>
-                        </div>
-                        <p className="font-semibold">{nesting.usedHeightMm?.toFixed(2)} mm</p>
-                    </div>
-                    <div className="flex flex-col space-y-1.5">
-                        <span className="text-sm font-medium leading-none text-muted-foreground">{t("Orders.Item.measurementsSheetUsage")}</span>
-                        <p className="font-semibold">{nesting.sheetAreaM2?.toFixed(4)} m²</p>
-                    </div>
-                </div>
             </div>
         </div>
     );
@@ -240,7 +243,7 @@ export function MeasurementsSection({
 
     if (isLoading) {
         return (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground py-2">
                 <Loader2 className="h-4 w-4 animate-spin" />
                 {t("Orders.Item.measurementsLoading")}
             </div>
@@ -249,7 +252,7 @@ export function MeasurementsSection({
 
     if (isError || !measurements) {
         return (
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground py-2">
                 {t("Orders.Item.measurementsUnavailable")}
             </p>
         );
@@ -260,97 +263,86 @@ export function MeasurementsSection({
         : "measurements.json";
 
     return (
-        <div className="space-y-6">
-            <div className="rounded-lg border bg-card shadow-sm">
-                <div className="flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <h3 className="text-lg font-semibold">{t("Orders.Item.measurementsDesign")}</h3>
-                        <p className="text-sm text-muted-foreground mt-1">
-                            {t("Orders.Item.measurementsDesignHint")}
-                        </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        <DownloadButton
-                            label={t("Orders.Item.downloadMeasurementSvg")}
-                            onClick={() =>
-                                downloadSVG(
-                                    measurements.measurementPreview,
-                                    downloadSuffix
-                                        ? `measurement-${downloadSuffix}.svg`
-                                        : "measurement.svg",
-                                )
-                            }
-                        />
-                        <DownloadButton
-                            label={t("Orders.Item.downloadMeasurementsJson")}
-                            onClick={() => downloadJSON(measurements, summaryFilename)}
-                        />
-                    </div>
+        <div className="space-y-5">
+            <div className="space-y-3">
+                <SubsectionHeading
+                    title={t("Orders.Item.measurementsDesign")}
+                    hint={t("Orders.Item.measurementsDesignHint")}
+                    actions={
+                        <>
+                            <DownloadLink
+                                label={t("Orders.Item.downloadMeasurementSvg")}
+                                onClick={() =>
+                                    downloadSVG(
+                                        measurements.measurementPreview,
+                                        downloadSuffix
+                                            ? `measurement-${downloadSuffix}.svg`
+                                            : "measurement.svg",
+                                    )
+                                }
+                            />
+                            <DownloadLink
+                                label={t("Orders.Item.downloadMeasurementsJson")}
+                                onClick={() => downloadJSON(measurements, summaryFilename)}
+                            />
+                        </>
+                    }
+                />
+                <SvgPreviewPanel
+                    svg={measurements.measurementPreview}
+                    alt="Measurement geometry preview"
+                />
+                <div className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-muted-foreground">
+                    <span className="inline-flex items-center gap-1.5">
+                        <span className="inline-block h-2.5 w-4 rounded-sm bg-blue-400/40" />
+                        {t("Manufacturers.PriceEngine.graphicArea")}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                        <span className="inline-block h-0.5 w-4 bg-red-600" />
+                        {t("Manufacturers.PriceEngine.cutPerimeter")}
+                    </span>
                 </div>
-                <div className="px-6 pb-6">
-                    <SvgPreviewPanel
-                        svg={measurements.measurementPreview}
-                        alt="Measurement geometry preview"
+                <div className="grid grid-cols-2 gap-x-6 gap-y-2 sm:max-w-md">
+                    <MetricInline
+                        label={t("Manufacturers.PriceEngine.graphicArea")}
+                        value={`${measurements.graphicAreaM2.toFixed(4)} m²`}
                     />
-                    <div className="flex flex-wrap gap-4 mt-4 text-sm">
-                        <span className="inline-flex items-center gap-2">
-                            <span className="inline-block h-3 w-5 rounded-sm bg-blue-400/40 border border-blue-500" />
-                            {t("Manufacturers.PriceEngine.graphicArea")}
-                        </span>
-                        <span className="inline-flex items-center gap-2">
-                            <span className="inline-block h-0.5 w-5 bg-red-600" />
-                            {t("Manufacturers.PriceEngine.cutPerimeter")}
-                        </span>
-                    </div>
+                    <MetricInline
+                        label={t("Manufacturers.PriceEngine.cutPerimeter")}
+                        value={`${measurements.cutPerimeterM.toFixed(3)} m`}
+                    />
                 </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <MetricCard
-                    label={t("Manufacturers.PriceEngine.graphicArea")}
-                    value={`${measurements.graphicAreaM2.toFixed(4)} m²`}
-                    hint={t("Manufacturers.PriceEngine.graphicAreaHint")}
-                />
-                <MetricCard
-                    label={t("Manufacturers.PriceEngine.cutPerimeter")}
-                    value={`${measurements.cutPerimeterM.toFixed(3)} m`}
-                    hint={t("Manufacturers.PriceEngine.cutPerimeterHint")}
-                />
             </div>
 
             {measurements.bondMeasurementPreview ? (
-                <div className="rounded-lg border bg-card shadow-sm">
-                    <div className="flex flex-col gap-3 p-6 sm:flex-row sm:items-center sm:justify-between">
-                        <div>
-                            <h3 className="text-lg font-semibold">{t("Orders.Item.measurementsBondDesign")}</h3>
-                            <p className="text-sm text-muted-foreground mt-1">
-                                {t("Orders.Item.measurementsBondDesignHint")}
-                            </p>
-                        </div>
-                        <DownloadButton
-                            label={t("Orders.Item.downloadMeasurementSvg")}
-                            onClick={() =>
-                                downloadSVG(
-                                    measurements.bondMeasurementPreview!,
-                                    downloadSuffix
-                                        ? `bond-measurement-${downloadSuffix}.svg`
-                                        : "bond-measurement.svg",
-                                )
-                            }
-                        />
-                    </div>
-                    <div className="px-6 pb-6">
-                        <SvgPreviewPanel
-                            svg={measurements.bondMeasurementPreview}
-                            alt="Cut bond measurement preview"
-                        />
-                    </div>
-                    <div className="px-6 pb-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <MetricCard
+                <div className="space-y-3 pt-5 border-t">
+                    <SubsectionHeading
+                        title={t("Orders.Item.measurementsBondDesign")}
+                        hint={t("Orders.Item.measurementsBondDesignHint")}
+                        actions={
+                            <DownloadLink
+                                label={t("Orders.Item.downloadMeasurementSvg")}
+                                onClick={() =>
+                                    downloadSVG(
+                                        measurements.bondMeasurementPreview!,
+                                        downloadSuffix
+                                            ? `bond-measurement-${downloadSuffix}.svg`
+                                            : "bond-measurement.svg",
+                                    )
+                                }
+                            />
+                        }
+                    />
+                    <SvgPreviewPanel
+                        svg={measurements.bondMeasurementPreview}
+                        alt="Cut bond measurement preview"
+                    />
+                    <div className="grid grid-cols-2 gap-x-6 gap-y-2 sm:max-w-md">
+                        <MetricInline
                             label={t("Orders.Item.bondGraphicArea")}
                             value={`${(measurements.bondGraphicAreaM2 ?? 0).toFixed(4)} m²`}
                         />
-                        <MetricCard
+                        <MetricInline
                             label={t("Orders.Item.bondCutPerimeter")}
                             value={`${(measurements.bondCutPerimeterM ?? 0).toFixed(3)} m`}
                         />
@@ -359,56 +351,40 @@ export function MeasurementsSection({
             ) : null}
 
             {visibleNesting.length > 0 ? (
-                <div className="space-y-4">
-                    <div>
-                        <h3 className="text-lg font-semibold">{t("Manufacturers.PriceEngine.nesting")}</h3>
-                        <p className="text-sm text-muted-foreground mt-1">
-                            {t("Orders.Item.measurementsNestingHint")}
-                        </p>
+                <div className="pt-5 border-t space-y-1">
+                    <SubsectionHeading
+                        title={t("Manufacturers.PriceEngine.nesting")}
+                        hint={t("Orders.Item.measurementsNestingHint")}
+                    />
+                    <div className="divide-y">
+                        {visibleNesting.map((n) => (
+                            <NestingRow
+                                key={n.type}
+                                nesting={n}
+                                t={t}
+                                downloadSuffix={downloadSuffix}
+                            />
+                        ))}
                     </div>
-                    {visibleNesting.map((n) => (
-                        <NestingCard
-                            key={n.type}
-                            nesting={n}
-                            t={t}
-                            downloadSuffix={downloadSuffix}
-                        />
-                    ))}
                 </div>
             ) : null}
         </div>
     );
 }
 
-function CollapsibleMeasurementsPanel({
-    title,
-    subtitle,
-    defaultOpen = false,
-    children,
-}: {
-    title: string;
-    subtitle?: string;
-    defaultOpen?: boolean;
-    children: React.ReactNode;
-}) {
-    const [open, setOpen] = React.useState(defaultOpen);
-
-    return (
-        <Collapsible open={open} onOpenChange={setOpen} className="group rounded-md border">
-            <CollapsibleTrigger className="w-full flex items-center justify-between gap-3 p-4 text-left hover:bg-muted/40 rounded-md transition-colors">
-                <div className="min-w-0">
-                    <p className="text-sm font-semibold">{title}</p>
-                    {subtitle ? (
-                        <p className="text-xs text-muted-foreground mt-0.5 truncate">{subtitle}</p>
-                    ) : null}
-                </div>
-                <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-data-[state=open]:rotate-180" />
-            </CollapsibleTrigger>
-            <CollapsibleContent className="px-4 pb-4">
-                {open ? children : null}
-            </CollapsibleContent>
-        </Collapsible>
-    );
+function getElementLabel(
+    el: Record<string, unknown>,
+    index: number,
+    t: ReturnType<typeof useTranslations>,
+): string {
+    const elType = String(el.signType ?? el.type ?? "text");
+    const base = t("Orders.Item.elementLabel", { index: index + 1 });
+    if (elType === "text") {
+        const text = String(el.text ?? "").trim();
+        return text ? `${base} — ${text}` : `${base} — ${t("Orders.Item.elementText")}`;
+    }
+    const svgName = String(el.svgName ?? "").trim();
+    return svgName ? `${base} — ${svgName}` : `${base} — ${t("Orders.Item.elementSvg")}`;
 }
 
 export function OrderItemMeasurementsBlock({
@@ -426,59 +402,40 @@ export function OrderItemMeasurementsBlock({
 
     return (
         <Collapsible open={open} onOpenChange={setOpen} className="group">
-            <CollapsibleTrigger className="w-full flex items-center justify-between gap-3 rounded-md p-2 text-left hover:bg-muted/40 transition-colors">
+            <CollapsibleTrigger className="w-full flex items-center justify-between gap-3 rounded-md py-1 text-left hover:text-foreground/80 transition-colors">
                 <h5 className="font-bold">{t("Orders.Item.measurements")}</h5>
                 <ChevronDownIcon className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-data-[state=open]:rotate-180" />
             </CollapsibleTrigger>
-            <CollapsibleContent className="space-y-4 pt-4">
+            <CollapsibleContent className="pt-3">
                 {open ? (
                     hasElements ? (
-                        elements.map((el, idx) => (
-                            <ElementMeasurementsSection
-                                key={String(el.id ?? idx)}
-                                el={el}
-                                index={idx}
-                                item={item}
-                                t={t}
-                            />
-                        ))
+                        <div className="space-y-6">
+                            {elements.map((el, idx) => {
+                                const elementId = el.id != null ? String(el.id) : undefined;
+                                const downloadSuffix = elementId ?? `element-${idx + 1}`;
+                                return (
+                                    <div
+                                        key={String(el.id ?? idx)}
+                                        className={idx > 0 ? "pt-6 border-t" : undefined}
+                                    >
+                                        <p className="text-sm font-medium text-muted-foreground mb-3">
+                                            {getElementLabel(el, idx, t)}
+                                        </p>
+                                        <MeasurementsSection
+                                            item={item}
+                                            elementId={elementId}
+                                            elementIndex={elementId ? undefined : idx}
+                                            downloadSuffix={downloadSuffix}
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </div>
                     ) : (
                         <MeasurementsSection item={item} />
                     )
                 ) : null}
             </CollapsibleContent>
         </Collapsible>
-    );
-}
-
-export function ElementMeasurementsSection({
-    el,
-    index,
-    item,
-    t,
-}: {
-    el: Record<string, unknown>;
-    index: number;
-    item: OrderItem;
-    t: ReturnType<typeof useTranslations>;
-}) {
-    const elementId = el.id != null ? String(el.id) : undefined;
-    const elType = String(el.signType ?? el.type ?? "text");
-    const base = t("Orders.Item.elementLabel", { index: index + 1 });
-    const label =
-        elType === "text"
-            ? `${base} — ${String(el.text ?? "").trim() || t("Orders.Item.elementText")}`
-            : `${base} — ${String(el.svgName ?? "").trim() || t("Orders.Item.elementSvg")}`;
-    const downloadSuffix = elementId ?? `element-${index + 1}`;
-
-    return (
-        <CollapsibleMeasurementsPanel title={label}>
-            <MeasurementsSection
-                item={item}
-                elementId={elementId}
-                elementIndex={elementId ? undefined : index}
-                downloadSuffix={downloadSuffix}
-            />
-        </CollapsibleMeasurementsPanel>
     );
 }
