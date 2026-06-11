@@ -1,4 +1,5 @@
 import { ManufacturerStub } from "./manufacturer.interface";
+import { FormulaExpr } from "@/lib/formula/formula-expr";
 
 export interface CustomizationOption {
   value: string;
@@ -32,6 +33,9 @@ export interface Product {
   mountingConfiguration?: { nodes: any[]; edges: any[] };
   extrasFormula?: string;
   extrasConfiguration?: { nodes: any[]; edges: any[] };
+  priceFormulaAst?: FormulaExpr | null;
+  mountingFormulaAst?: FormulaExpr | null;
+  extrasFormulaAst?: FormulaExpr | null;
   iflowsProductCode?: string;
   iflowsAdministration?: string;
 }

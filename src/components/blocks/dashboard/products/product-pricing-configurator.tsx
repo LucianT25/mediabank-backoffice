@@ -38,6 +38,7 @@ import {Check, ChevronsUpDown, Lock, Unlock } from 'lucide-react'
 import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList} from '@/components/ui/command'
 import { cn } from '@/lib/utils'
 import ColorPicker from '@/components/ui/color-picker'
+import { compileGraphToExpr } from '@/lib/formula/compile-graph'
 
 const DeleteButton = ({onClick}: { onClick: () => void }) => {
     const tMessages = useTranslations()
@@ -1191,6 +1192,10 @@ export const ProductPricingConfigurator = ({ product, materials }: { product: Pr
 
     const saveFormula = async () => {
         try {
+            // Canonical semantic AST; the API regenerates the string cache from it.
+            const priceFormulaAst = compileGraphToExpr(cleanNodes(priceNodes), priceEdges)
+            const mountingFormulaAst = compileGraphToExpr(cleanNodes(mountingNodes), mountingEdges)
+            const extrasFormulaAst = compileGraphToExpr(cleanNodes(extrasNodes), extrasEdges)
             const response = await submitData(
                 `${routes.priceEngine}/${product.id}`,
                 (session as any).accessToken,
@@ -1201,7 +1206,10 @@ export const ProductPricingConfigurator = ({ product, materials }: { product: Pr
                     mountingFormula: mountingFormula ?? '',
                     mountingConfiguration: { nodes: cleanNodes(mountingNodes), edges: mountingEdges },
                     extrasFormula: extrasFormula ?? '',
-                    extrasConfiguration: { nodes: cleanNodes(extrasNodes), edges: extrasEdges }
+                    extrasConfiguration: { nodes: cleanNodes(extrasNodes), edges: extrasEdges },
+                    priceFormulaAst,
+                    mountingFormulaAst,
+                    extrasFormulaAst
                 },
             );
             if (response.error) {
