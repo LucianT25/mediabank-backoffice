@@ -383,6 +383,7 @@
       "plexi": "Plexiglas",
       "bond": "Bond",
       "oracal": "Oracal",
+      "cutBondNesting": "Cut Bond Nesting",
       "sheetWidth": "Sheet Width",
       "sheetHeight": "Sheet Height", 
       "usedHeight": "Used Height",
@@ -535,7 +536,20 @@
       "ledMaterial": "LED Color",
       "yes": "Yes",
       "no": "No",
-      "viewInConfigurator": "View in configurator"
+      "viewInConfigurator": "View in configurator",
+      "measurements": "Measurements",
+      "measurementsLoading": "Computing measurements and nesting layouts...",
+      "measurementsUnavailable": "Measurements could not be computed for this item.",
+      "measurementsDesign": "Measured geometry",
+      "measurementsDesignHint": "Blue fill shows the graphic area; red outlines show all cut contours (including holes).",
+      "measurementsBondDesign": "Cut bond geometry",
+      "measurementsBondDesignHint": "Union of element shapes inflated by mounting padding — used for bond material usage.",
+      "measurementsNestingHint": "Sheet nesting layouts for each material type referenced in the product formula.",
+      "measurementsSheetUsage": "Sheet usage",
+      "downloadMeasurementSvg": "Download SVG",
+      "downloadMeasurementsJson": "Download summary (JSON)",
+      "bondGraphicArea": "Bond graphic area",
+      "bondCutPerimeter": "Bond cut perimeter"
     }
   },
   "Products": {

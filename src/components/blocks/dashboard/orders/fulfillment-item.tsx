@@ -16,7 +16,8 @@ import { useFetcher } from "@/hooks/use-fetcher";
 import { getCustomizationLabel } from "@/lib/utils";
 import { formatCurrency } from "@/lib/currency";
 import { buildConfiguratorUrl } from "@/lib/configurator-url";
-import { ChevronsLeftRight, ChevronsUpDown, ExternalLink, Loader2, SquareDashed } from "lucide-react";
+import { ExternalLink, Loader2 } from "lucide-react";
+import { OrderItemMeasurementsBlock } from "@/components/blocks/dashboard/orders/measurements-section";
 
 function downloadSVG(svgString: string, filename = "graphic.svg") {
     const blob = new Blob([svgString], { type: "image/svg+xml" });
@@ -208,163 +209,6 @@ const ElementContentCard = ({
                     <MaterialsGrid source={el} t={t} />
                 </div>
             )}
-        </div>
-    );
-};
-
-function getElementNestingLabel(
-    el: Record<string, unknown>,
-    index: number,
-    t: ReturnType<typeof useTranslations>,
-): string {
-    const elType = getElementType(el);
-    const base = t('Orders.Item.elementLabel', { index: index + 1 });
-    if (elType === 'text') {
-        const text = String(el.text ?? '').trim();
-        return text ? `${base} — ${text}` : `${base} — ${t('Orders.Item.elementText')}`;
-    }
-    const svgName = String(el.svgName ?? '').trim();
-    return svgName ? `${base} — ${svgName}` : `${base} — ${t('Orders.Item.elementSvg')}`;
-}
-
-const NestingDisplay = ({
-    type,
-    item,
-    elementId,
-    elementIndex,
-    downloadSuffix,
-}: {
-    type: string;
-    item: OrderItem | undefined;
-    elementId?: string;
-    elementIndex?: number;
-    downloadSuffix?: string;
-}) => {
-    const t = useTranslations('Manufacturers.PriceEngine');
-    const { data: session } = useSession();
-    const usesType = item?.product?.priceFormula?.includes(`${type}NestingResult`);
-
-    const queryParams: Record<string, string | undefined> = {
-        orderItemId: item?.id,
-        type,
-    };
-    if (elementId) {
-        queryParams.elementId = elementId;
-    } else if (elementIndex != null) {
-        queryParams.elementIndex = String(elementIndex);
-    }
-
-    const { data: nestingResult, isLoading } = useFetcher({
-        route: usesType ? `${routes.priceEngine}/nesting` : undefined,
-        token: (session as any)?.accessToken,
-        queryParams,
-    });
-
-    if (isLoading) {
-        return (
-            <div className="border rounded-lg p-4">
-                <p className="text-sm text-muted-foreground font-medium capitalize">{type}</p>
-                <div className="flex items-center gap-2 mt-2">
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    <span className="text-sm text-muted-foreground">Loading nesting data...</span>
-                </div>
-            </div>
-        );
-    }
-
-    if (!nestingResult || !usesType) {
-        return (
-            <div className="border rounded-lg p-4">
-                <p className="text-sm text-muted-foreground font-medium capitalize">{type}</p>
-                <p className="text-sm text-muted-foreground mt-2">No nesting data available</p>
-            </div>
-        );
-    }
-
-    return (
-        <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-            <div className="flex flex-col space-y-1.5 p-6">
-                <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold leading-none tracking-tight capitalize">{type}</h3>
-                    <button
-                        onClick={() =>
-                            downloadSVG(
-                                nestingResult.preview,
-                                downloadSuffix
-                                    ? `${type}-${downloadSuffix}-nesting.svg`
-                                    : `${type}-nesting.svg`,
-                            )
-                        }
-                        className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-3"
-                    >
-                        <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                        {t('download')}
-                    </button>
-                </div>
-            </div>
-            <div className="p-6 pt-0">
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="flex flex-col space-y-1.5">
-                        <div className="flex items-center space-x-2">
-                            <ChevronsLeftRight className="h-4 w-4 text-muted-foreground"/>
-                            <span className="text-sm font-medium leading-none">{t('sheetWidth')}</span>
-                        </div>
-                        <p className="font-semibold">{nestingResult?.sheet?.w?.toFixed(2)}mm</p>
-                    </div>
-                    <div className="flex flex-col space-y-1.5">
-                        <div className="flex items-center space-x-2">
-                            <ChevronsUpDown className="h-4 w-4 text-muted-foreground"/>
-                            <span className="text-sm font-medium leading-none">{t('sheetHeight')}</span>
-                        </div>
-                        <p className="font-semibold">{nestingResult?.sheet?.h?.toFixed(2)}mm</p>
-                    </div>
-                    <div className="flex flex-col space-y-1.5">
-                        <div className="flex items-center space-x-2">
-                            <SquareDashed className="h-4 w-4 text-muted-foreground"/>
-                            <span className="text-sm font-medium leading-none">{t('usedHeight')}</span>
-                        </div>
-                        <p className="font-semibold">{nestingResult?.usedHeight?.toFixed(2)}mm</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-const NESTING_TYPES = ['oracal', 'plexi', 'bond'] as const;
-
-const ElementNestingSection = ({
-    el,
-    index,
-    item,
-    t,
-}: {
-    el: Record<string, unknown>;
-    index: number;
-    item: OrderItem;
-    t: ReturnType<typeof useTranslations>;
-}) => {
-    const elementId = el.id != null ? String(el.id) : undefined;
-    const label = getElementNestingLabel(el, index, t);
-    const downloadSuffix = elementId ?? `element-${index + 1}`;
-
-    return (
-        <div className="space-y-3 rounded-md border p-4">
-            <p className="text-sm font-semibold">{label}</p>
-            <div className="space-y-3">
-                {NESTING_TYPES.map((type) => (
-                    <NestingDisplay
-                        key={`${elementId ?? index}-${type}`}
-                        type={type}
-                        item={item}
-                        elementId={elementId}
-                        elementIndex={elementId ? undefined : index}
-                        downloadSuffix={downloadSuffix}
-                    />
-                ))}
-            </div>
         </div>
     );
 };
@@ -614,23 +458,13 @@ function FulfillmentOrderItem({
                         </div>
                     )}
 
-                    <div className="md:col-span-2 space-y-4 pt-4 border-t">
-                        <h5 className="font-bold">{t('Manufacturers.PriceEngine.nesting')}</h5>
-                        {hasElements ? (
-                            elements.map((el, idx) => (
-                                <ElementNestingSection
-                                    key={String(el.id ?? idx)}
-                                    el={el}
-                                    index={idx}
-                                    item={item}
-                                    t={t}
-                                />
-                            ))
-                        ) : (
-                            NESTING_TYPES.map((type) => (
-                                <NestingDisplay key={type} type={type} item={item} />
-                            ))
-                        )}
+                    <div className="md:col-span-2 pt-4 border-t">
+                        <OrderItemMeasurementsBlock
+                            item={item}
+                            hasElements={hasElements}
+                            elements={elements}
+                            t={t}
+                        />
                     </div>
                 </div>
             </div>

@@ -383,6 +383,7 @@
       "plexi": "Plexiglas",
       "bond": "Bond",
       "oracal": "Oracal",
+      "cutBondNesting": "Nesting Cut Bond",
       "sheetWidth": "Lățime placă",
       "sheetHeight": "Înălțime placă", 
       "usedHeight": "Înălțime utilizată",
@@ -535,7 +536,20 @@
       "ledMaterial": "Culoare LED",
       "yes": "Da",
       "no": "Nu",
-      "viewInConfigurator": "Vezi în configurator"
+      "viewInConfigurator": "Vezi în configurator",
+      "measurements": "Măsurători",
+      "measurementsLoading": "Se calculează măsurătorile și layout-urile de nesting...",
+      "measurementsUnavailable": "Măsurătorile nu au putut fi calculate pentru acest articol.",
+      "measurementsDesign": "Geometrie măsurată",
+      "measurementsDesignHint": "Umplutura albastră arată suprafața grafică; contururile roșii arată toate tăieturile (inclusiv găurile).",
+      "measurementsBondDesign": "Geometrie cut bond",
+      "measurementsBondDesignHint": "Uniunea elementelor mărită cu padding-ul de montaj — folosită pentru consumul de bond.",
+      "measurementsNestingHint": "Layout-uri de nesting pe plăci pentru fiecare tip de material din formula produsului.",
+      "measurementsSheetUsage": "Consum placă",
+      "downloadMeasurementSvg": "Descarcă SVG",
+      "downloadMeasurementsJson": "Descarcă sumar (JSON)",
+      "bondGraphicArea": "Suprafață grafică bond",
+      "bondCutPerimeter": "Perimetru tăiat bond"
     }
   },
   "Products": {
