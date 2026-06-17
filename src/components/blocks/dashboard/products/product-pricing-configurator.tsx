@@ -23,6 +23,8 @@ import {nanoid} from 'nanoid'
 import {Product, ProductType} from '@/interfaces/product.interface'
 import {Label} from '@/components/ui/label'
 import {Button} from '@/components/ui/button'
+import {Input} from '@/components/ui/input'
+import {refreshData} from '@/lib/server-actions'
 
 import '@xyflow/react/dist/style.css';
 import {Material} from '@/interfaces/material.interface'
@@ -978,6 +980,35 @@ export const ProductPricingConfigurator = ({ product, materials }: { product: Pr
     const [extrasEdges, setExtrasEdges, onExtrasEdgesChange] = useEdgesState(product.extrasConfiguration?.edges ?? [])
     const [extrasFormula, setExtrasFormula] = useState(product.extrasFormula ?? '')
 
+    const [nestingMarginMm, setNestingMarginMm] = useState(
+        product.nestingMarginMm != null ? String(product.nestingMarginMm) : '5',
+    )
+    const [savingNestingMargin, setSavingNestingMargin] = useState(false)
+
+    const saveNestingMargin = async () => {
+        setSavingNestingMargin(true)
+        try {
+            const parsed = Number(nestingMarginMm)
+            await submitData(
+                `${routes.product}/${product.id}`,
+                (session as any)?.accessToken,
+                {
+                    id: product.id,
+                    nestingMarginMm: Number.isFinite(parsed) ? parsed : 5,
+                },
+            )
+            toast({ title: tMessages('Manufacturers.PriceEngine.nestingMarginSaved') })
+            await refreshData(`${routes.product}/${product.id}`)
+        } catch {
+            toast({
+                title: tMessages('Manufacturers.PriceEngine.nestingMarginSaveFailed'),
+                variant: 'destructive',
+            })
+        } finally {
+            setSavingNestingMargin(false)
+        }
+    }
+
     const deleteNodePrice = useCallback((id: string) => {
         setPriceNodes((nds) => nds.filter((n) => n.id !== id))
         setPriceEdges((eds) => eds.filter((e) => e.source !== id && e.target !== id))
@@ -1507,6 +1538,31 @@ export const ProductPricingConfigurator = ({ product, materials }: { product: Pr
                     <span>{product.type}</span>
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">{tMessages('Manufacturers.PriceEngine.description')}</p>
+                <div className="mt-4 flex flex-wrap items-end gap-3 max-w-md">
+                    <div className="space-y-1">
+                        <Label htmlFor="nestingMarginMm">
+                            {tMessages('Manufacturers.PriceEngine.nestingMarginMm')}
+                        </Label>
+                        <Input
+                            id="nestingMarginMm"
+                            type="number"
+                            min={0}
+                            step={0.5}
+                            value={nestingMarginMm}
+                            onChange={(e) => setNestingMarginMm(e.target.value)}
+                        />
+                    </div>
+                    <Button
+                        type="button"
+                        variant="secondary"
+                        onClick={saveNestingMargin}
+                        disabled={savingNestingMargin}
+                    >
+                        {savingNestingMargin
+                            ? tMessages('Manufacturers.PriceEngine.savingNestingMargin')
+                            : tMessages('Manufacturers.PriceEngine.saveNestingMargin')}
+                    </Button>
+                </div>
             </div>
 
             <div className="flex gap-1 rounded-lg border border-muted bg-muted/30 p-1">

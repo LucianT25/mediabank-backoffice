@@ -38,6 +38,7 @@ export interface Product {
   extrasFormulaAst?: FormulaExpr | null;
   iflowsProductCode?: string;
   iflowsAdministration?: string;
+  nestingMarginMm?: number;
 }
 
 export enum ProductType {
