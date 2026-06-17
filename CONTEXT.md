@@ -22,7 +22,7 @@ Auth source: `auth/login?source=backoffice` and Google social login.
 
 1. **Product setup** — Create product → customization (materials/options) → pricing graph (React Flow formulas) → optional iFlows SKU mapping.
 2. **Stripe Connect** — Reseller completes onboarding via dashboard Stripe page; sets `stripeAccountId` required for client checkout.
-3. **Order management** — View order status, BOM breakdown, measurements/nesting previews, iFlows sync status.
+3. **Order management** — View order status, BOM breakdown, measurements/nesting previews (from stored `geometryMetrics` on items or live API fallback), iFlows sync status.
 4. **Fulfillment** — Manufacturer updates fulfillment status on assigned items.
 
 ---
