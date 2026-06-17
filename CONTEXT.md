@@ -30,7 +30,7 @@ Auth source: `auth/login?source=backoffice` and Google social login.
 ## Business Rules (backoffice responsibilities)
 
 - Pricing formulas edited here are evaluated server-side by API — UI saves graph JSON, not computed prices.
-- **Measurements section** calls API `GET order/:id/measurements` — display inline SVG; do not use Next/Image for blob SVGs.
+- **Measurements section** calls API `GET price-engine/measurements` — loads SVG previews from R2 production assets or stored `geometryMetrics`; does not recompute for orders placed after geometry snapshot rollout.
 - iFlows config is per-product mapping; actual ERP sync runs in API on **paid** orders only.
 - Configurator preview links use `FRONTEND_URL` + reseller key + configuration id (`configurator-url.ts`).
 

@@ -26,9 +26,9 @@ _Last updated: 2026-06-16. Re-run the `update-memory` agent after major architec
 
 ### Decision: Inline SVG for measurement previews
 
-**What:** `measurements-section.tsx` renders API-returned SVG strings directly (collapsible flat UI).
+**What:** `measurements-section.tsx` renders API-returned SVG strings directly (collapsible flat UI). API loads previews from R2 production assets or stored `geometryMetrics` — no geometry recompute for current orders.
 
-**Evidence:** Recent measurements UI work
+**Evidence:** `measurements-section.tsx`, API `GET /price-engine/measurements`
 
 **What to avoid:** `<Image src={blobUrl}>` for dynamic measurement SVGs.
 

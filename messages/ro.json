@@ -543,7 +543,7 @@
       "no": "Nu",
       "viewInConfigurator": "Vezi în configurator",
       "measurements": "Măsurători",
-      "measurementsLoading": "Se calculează măsurătorile și layout-urile de nesting...",
+      "measurementsLoading": "Se încarcă măsurătorile și layout-urile de nesting...",
       "measurementsUnavailable": "Măsurătorile nu au putut fi calculate pentru acest articol.",
       "measurementsDesign": "Geometrie măsurată",
       "measurementsDesignHint": "Umplutura albastră arată suprafața grafică; contururile roșii arată toate tăieturile (inclusiv găurile).",

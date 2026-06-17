@@ -543,7 +543,7 @@
       "no": "No",
       "viewInConfigurator": "View in configurator",
       "measurements": "Measurements",
-      "measurementsLoading": "Computing measurements and nesting layouts...",
+      "measurementsLoading": "Loading measurements and nesting layouts...",
       "measurementsUnavailable": "Measurements could not be computed for this item.",
       "measurementsDesign": "Measured geometry",
       "measurementsDesignHint": "Blue fill shows the graphic area; red outlines show all cut contours (including holes).",
