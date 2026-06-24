@@ -13,7 +13,8 @@ export const routes = {
     product: 'product',
     priceEngine: 'price-engine',
     dashboard: 'dashboard',
-    material: 'material'
+    material: 'material',
+    iflows: 'iflows',
 }
 
 export async function serverFetch(route: string) {

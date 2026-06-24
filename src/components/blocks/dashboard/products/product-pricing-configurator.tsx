@@ -41,6 +41,7 @@ import {Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandL
 import { cn } from '@/lib/utils'
 import ColorPicker from '@/components/ui/color-picker'
 import { compileGraphToExpr } from '@/lib/formula/compile-graph'
+import { getFormulaVariables } from '@/lib/formula/formula-variables'
 
 const DeleteButton = ({onClick}: { onClick: () => void }) => {
     const tMessages = useTranslations()
@@ -1265,127 +1266,16 @@ export const ProductPricingConfigurator = ({ product, materials }: { product: Pr
     }
 
     const valueNodes = useMemo(() => {
-        const values = [
-            {
-                label: tMessages(`Manufacturers.PriceEngine.graphicArea`),
-                value: 'graphicArea',
-                hint: tMessages(`Manufacturers.PriceEngine.graphicAreaHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.cutPerimeter`),
-                value: 'cutPerimeter',
-                hint: tMessages(`Manufacturers.PriceEngine.cutPerimeterHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.plexiNestingResult`),
-                value: 'plexiNestingResult',
-                hint: tMessages(`Manufacturers.PriceEngine.plexiNestingResultHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.bondNestingResult`),
-                value: 'bondNestingResult',
-                hint: tMessages(`Manufacturers.PriceEngine.bondNestingResultHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.oracalNestingResult`),
-                value: 'oracalNestingResult',
-                hint: tMessages(`Manufacturers.PriceEngine.oracalNestingResultHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.letterHeight`),
-                value: 'letterHeight',
-                hint: tMessages(`Manufacturers.PriceEngine.letterHeightHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.letterWidth`),
-                value: 'letterWidth',
-                hint: tMessages(`Manufacturers.PriceEngine.letterWidthHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.letterDepth`),
-                value: 'letterDepth',
-                hint: tMessages(`Manufacturers.PriceEngine.letterDepthHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.faceMaterial`),
-                value: 'faceMaterial',
-                hint: tMessages(`Manufacturers.PriceEngine.faceMaterialHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.sideMaterial`),
-                value: 'sideMaterial',
-                hint: tMessages(`Manufacturers.PriceEngine.sideMaterialHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.extraMaterial`),
-                value: 'extraMaterial',
-                hint: tMessages(`Manufacturers.PriceEngine.extraMaterialHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.ledMaterial`),
-                value: 'ledMaterial',
-                hint: tMessages(`Manufacturers.PriceEngine.ledMaterialHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.mounting`),
-                value: 'mounting',
-                hint: tMessages(`Manufacturers.PriceEngine.mountingHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.mountingWidth`),
-                value: 'mountingWidth',
-                hint: tMessages(`Manufacturers.PriceEngine.mountingWidthHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.mountingHeight`),
-                value: 'mountingHeight',
-                hint: tMessages(`Manufacturers.PriceEngine.mountingHeightHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.mountingPadding`),
-                value: 'mountingPadding',
-                hint: tMessages(`Manufacturers.PriceEngine.mountingPaddingHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.isExterior`),
-                value: 'isExterior',
-                hint: tMessages(`Manufacturers.PriceEngine.isExteriorHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.withLightSensor`),
-                value: 'withLightSensor',
-                hint: tMessages(`Manufacturers.PriceEngine.withLightSensorHint`)
-            },
-            {
-                label: tMessages(`Manufacturers.PriceEngine.cableLength`),
-                value: 'cableLength',
-                hint: tMessages(`Manufacturers.PriceEngine.cableLengthHint`)
-            },
-        ]
-
-        switch (product.type) {
-            case ProductType.volumetricClassic:
-            case ProductType.volumetricHalo:
-            case ProductType.volumetricSlim:
-            case ProductType.neonLed:
-                return [
-                    ...values
-                ]
-            case ProductType.boxOneFace:
-            case ProductType.boxTwoFaces:
-            case ProductType.boxBond:
-            case ProductType.boxCanvas:
-                return [
-                    {label: 'Box Width', value: 'boxWidth', hint: 'The width of the box.'},
-                    {label: 'Box Height', value: 'boxHeight', hint: 'The height of the box.'},
-                    {label: 'Box Depth', value: 'boxDepth', hint: 'The depth of the box.'},
-                    ...values,
-                ]
-
-            default:
-                return []
-        }
-    }, [product.type])
+        return getFormulaVariables(product.type).map((v) => ({
+            label: v.labelKey === 'boxWidth' || v.labelKey === 'boxHeight' || v.labelKey === 'boxDepth'
+                ? v.labelKey === 'boxWidth' ? 'Box Width' : v.labelKey === 'boxHeight' ? 'Box Height' : 'Box Depth'
+                : tMessages(`Manufacturers.PriceEngine.${v.labelKey}`),
+            value: v.name,
+            hint: v.labelKey === 'boxWidth' || v.labelKey === 'boxHeight' || v.labelKey === 'boxDepth'
+                ? `The ${v.labelKey.replace('box', 'box ').toLowerCase()} of the box.`
+                : tMessages(`Manufacturers.PriceEngine.${v.labelKey}Hint`),
+        }))
+    }, [product.type, tMessages])
 
     const renderedFormula = useMemo(() => {
         if (!currentFormula) return null;

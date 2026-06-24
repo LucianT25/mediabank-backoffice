@@ -123,6 +123,11 @@ export const ProductsTable = ({rows, total}: PaginatedData<Product>) => {
                                     {t('editIflowsMapping')}
                                 </DropdownMenuItem>
                             </Link>
+                            <Link href={`products/${product.id}/equipment-profiles`}>
+                                <DropdownMenuItem>
+                                    {t('editEquipmentProfiles')}
+                                </DropdownMenuItem>
+                            </Link>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 );

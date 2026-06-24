@@ -585,7 +585,8 @@
       "manufacturerDisabled": "The manufacturer of this product is disabled.",
       "productNotVisible": "This product will not show in the shop.",
       "editCustomizations": "Edit customizations",
-      "editIflowsMapping": "Edit iFlows mapping"
+      "editIflowsMapping": "Edit iFlows mapping",
+      "editEquipmentProfiles": "Equipment and profiles"
     },
     "Modal": {
       "title": "Product Details",
@@ -681,6 +682,36 @@
       "saving": "Saving...",
       "saved": "iFlows mapping saved.",
       "saveFailed": "Failed to save iFlows mapping."
+    },
+    "EquipmentProfiles": {
+      "title": "Equipment and profiles",
+      "description": "Define which iFlows equipment and work profiles are attached to orders for {product} when conditions match.",
+      "equipment": "Equipment",
+      "profile": "Profile",
+      "condition": "IF condition",
+      "quantity": "Quantity",
+      "actions": "Actions",
+      "noRules": "No rules yet. Add a rule to get started.",
+      "noEquipments": "No equipments loaded from iFlows. Check IFLOWS_EQUIPMENT_API_URL configuration.",
+      "addRule": "Add rule",
+      "edit": "Edit",
+      "delete": "Delete",
+      "editRule": "Edit rule",
+      "save": "Save rules",
+      "saving": "Saving...",
+      "saved": "Equipment rules saved.",
+      "saveFailed": "Failed to save equipment rules.",
+      "noProfile": "No profile",
+      "digitalFile": "Requires digital file",
+      "doneEditing": "Done",
+      "alwaysApply": "Always apply (no condition)",
+      "variable": "Variable",
+      "constant": "Constant",
+      "leftOperand": "Left",
+      "rightOperand": "Right",
+      "addComparison": "Add comparison",
+      "removeComparison": "Remove",
+      "preview": "Preview"
     }
   },
   "Materials": {

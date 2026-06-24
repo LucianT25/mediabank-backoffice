@@ -585,7 +585,8 @@
       "manufacturerDisabled": "Producătorul acestui produs este dezactivat.",
       "productNotVisible": "Acest produs nu va fi afișat în magazin.",
       "editCustomizations": "Editați personalizările produsului",
-      "editIflowsMapping": "Editați maparea iFlows"
+      "editIflowsMapping": "Editați maparea iFlows",
+      "editEquipmentProfiles": "Echipamente și profile"
     },
     "Modal": {
       "title": "Detalii produs",
@@ -681,6 +682,36 @@
       "saving": "Se salvează...",
       "saved": "Maparea iFlows a fost salvată.",
       "saveFailed": "Salvarea mapării iFlows a eșuat."
+    },
+    "EquipmentProfiles": {
+      "title": "Echipamente și profile",
+      "description": "Definiți ce echipamente și profile de lucru iFlows se atașează comenzilor pentru {product} când condițiile sunt îndeplinite.",
+      "equipment": "Echipament",
+      "profile": "Profil",
+      "condition": "Condiție IF",
+      "quantity": "Cantitate",
+      "actions": "Acțiuni",
+      "noRules": "Nicio regulă încă. Adăugați o regulă pentru a începe.",
+      "noEquipments": "Niciun echipament încărcat din iFlows. Verificați configurarea IFLOWS_EQUIPMENT_API_URL.",
+      "addRule": "Adaugă regulă",
+      "edit": "Editează",
+      "delete": "Șterge",
+      "editRule": "Editează regula",
+      "save": "Salvează regulile",
+      "saving": "Se salvează...",
+      "saved": "Regulile de echipamente au fost salvate.",
+      "saveFailed": "Salvarea regulilor de echipamente a eșuat.",
+      "noProfile": "Fără profil",
+      "digitalFile": "Necesită fișier digital",
+      "doneEditing": "Gata",
+      "alwaysApply": "Aplică întotdeauna (fără condiție)",
+      "variable": "Variabilă",
+      "constant": "Constantă",
+      "leftOperand": "Stânga",
+      "rightOperand": "Dreapta",
+      "addComparison": "Adaugă comparație",
+      "removeComparison": "Elimină",
+      "preview": "Previzualizare"
     }
   },
   "Materials": {

@@ -1,6 +1,17 @@
 import { ManufacturerStub } from "./manufacturer.interface";
 import { FormulaExpr } from "@/lib/formula/formula-expr";
 
+export interface ProductEquipmentRule {
+  id: string;
+  equipmentId: string;
+  profileId?: string | null;
+  conditionAst?: FormulaExpr | null;
+  conditionFormula?: string;
+  quantity?: string;
+  digitalFile?: boolean;
+  sortOrder?: number;
+}
+
 export interface CustomizationOption {
   value: string;
   label?: string;
@@ -38,6 +49,7 @@ export interface Product {
   extrasFormulaAst?: FormulaExpr | null;
   iflowsProductCode?: string;
   iflowsAdministration?: string;
+  iflowsEquipmentRules?: ProductEquipmentRule[] | null;
   nestingMarginMm?: number;
 }
 
