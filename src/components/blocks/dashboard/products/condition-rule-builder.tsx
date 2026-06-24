@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -148,6 +148,9 @@ export default function ConditionRuleBuilder({
     return buildConditionAst(rows.map(rowToComparison), joiners);
   }, [rows, joiners, alwaysApply]);
 
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+
   useEffect(() => {
     const flat = flattenAst(value);
     setRows(flat.rows.length ? flat.rows : [defaultRow()]);
@@ -156,8 +159,7 @@ export default function ConditionRuleBuilder({
   }, [value]);
 
   useEffect(() => {
-    onChange(computedAst);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- parent passes stable callback
+    onChangeRef.current(computedAst);
   }, [computedAst]);
 
   const preview = alwaysApply
