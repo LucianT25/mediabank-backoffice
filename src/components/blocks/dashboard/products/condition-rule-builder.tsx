@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -123,6 +123,19 @@ function rowToComparison(row: ComparisonRow): ConditionComparison {
   return { left, op: row.op, right };
 }
 
+function astSignature(ast: FormulaExpr | null | undefined): string {
+  return ast ? JSON.stringify(ast) : '';
+}
+
+function buildAstFromState(
+  rows: ComparisonRow[],
+  joiners: LogicOp[],
+  alwaysApply: boolean,
+): FormulaExpr | null {
+  if (alwaysApply) return null;
+  return buildConditionAst(rows.map(rowToComparison), joiners);
+}
+
 interface ConditionRuleBuilderProps {
   productType?: string;
   value?: FormulaExpr | null;
@@ -138,29 +151,50 @@ export default function ConditionRuleBuilder({
   const tPe = useTranslations('Manufacturers.PriceEngine');
   const variables = useMemo(() => getFormulaVariables(productType), [productType]);
 
-  const initial = useMemo(() => flattenAst(value), [value]);
-  const [rows, setRows] = useState<ComparisonRow[]>(initial.rows);
-  const [joiners, setJoiners] = useState<LogicOp[]>(initial.joiners);
-  const [alwaysApply, setAlwaysApply] = useState(!value);
-
-  const computedAst = useMemo(() => {
-    if (alwaysApply) return null;
-    return buildConditionAst(rows.map(rowToComparison), joiners);
-  }, [rows, joiners, alwaysApply]);
+  const [rows, setRows] = useState<ComparisonRow[]>(
+    () => flattenAst(value).rows,
+  );
+  const [joiners, setJoiners] = useState<LogicOp[]>(
+    () => flattenAst(value).joiners,
+  );
+  const [alwaysApply, setAlwaysApply] = useState(() => !value);
 
   const onChangeRef = useRef(onChange);
   onChangeRef.current = onChange;
+  const lastEmittedRef = useRef(astSignature(value));
 
-  useEffect(() => {
-    const flat = flattenAst(value);
-    setRows(flat.rows.length ? flat.rows : [defaultRow()]);
-    setJoiners(flat.joiners);
-    setAlwaysApply(!value);
-  }, [value]);
+  const emitAst = useCallback((ast: FormulaExpr | null) => {
+    const signature = astSignature(ast);
+    if (signature === lastEmittedRef.current) return;
+    lastEmittedRef.current = signature;
+    onChangeRef.current(ast);
+  }, []);
 
-  useEffect(() => {
-    onChangeRef.current(computedAst);
-  }, [computedAst]);
+  const applyRows = useCallback(
+    (nextRows: ComparisonRow[], nextJoiners: LogicOp[] = joiners) => {
+      setRows(nextRows);
+      emitAst(buildAstFromState(nextRows, nextJoiners, alwaysApply));
+    },
+    [alwaysApply, joiners, emitAst],
+  );
+
+  const applyJoiners = useCallback(
+    (nextJoiners: LogicOp[]) => {
+      setJoiners(nextJoiners);
+      emitAst(buildAstFromState(rows, nextJoiners, alwaysApply));
+    },
+    [alwaysApply, rows, emitAst],
+  );
+
+  const handleAlwaysApplyChange = (checked: boolean) => {
+    setAlwaysApply(checked);
+    emitAst(buildAstFromState(rows, joiners, checked));
+  };
+
+  const computedAst = useMemo(
+    () => buildAstFromState(rows, joiners, alwaysApply),
+    [rows, joiners, alwaysApply],
+  );
 
   const preview = alwaysApply
     ? t('alwaysApply')
@@ -181,7 +215,7 @@ export default function ConditionRuleBuilder({
           id="always-apply"
           type="checkbox"
           checked={alwaysApply}
-          onChange={(e) => setAlwaysApply(e.target.checked)}
+          onChange={(e) => handleAlwaysApplyChange(e.target.checked)}
         />
         <Label htmlFor="always-apply">{t('alwaysApply')}</Label>
       </div>
@@ -196,7 +230,7 @@ export default function ConditionRuleBuilder({
                   onValueChange={(v) => {
                     const next = [...joiners];
                     next[index - 1] = v as LogicOp;
-                    setJoiners(next);
+                    applyJoiners(next);
                   }}
                 >
                   <SelectTrigger className="w-28">
@@ -220,7 +254,7 @@ export default function ConditionRuleBuilder({
                     onValueChange={(v) => {
                       const next = [...rows];
                       next[index] = { ...row, leftKind: v as OperandSide };
-                      setRows(next);
+                      applyRows(next);
                     }}
                   >
                     <SelectTrigger className="w-28">
@@ -239,7 +273,7 @@ export default function ConditionRuleBuilder({
                     onValueChange={(v) => {
                       const next = [...rows];
                       next[index] = { ...row, leftVariable: v };
-                      setRows(next);
+                      applyRows(next);
                     }}
                   >
                     <SelectTrigger className="w-44">
@@ -261,7 +295,7 @@ export default function ConditionRuleBuilder({
                     onChange={(e) => {
                       const next = [...rows];
                       next[index] = { ...row, leftLiteral: e.target.value };
-                      setRows(next);
+                      applyRows(next);
                     }}
                   />
                 )}
@@ -271,7 +305,7 @@ export default function ConditionRuleBuilder({
                   onValueChange={(v) => {
                     const next = [...rows];
                     next[index] = { ...row, op: v as CompareOp };
-                    setRows(next);
+                    applyRows(next);
                   }}
                 >
                   <SelectTrigger className="w-20">
@@ -293,7 +327,7 @@ export default function ConditionRuleBuilder({
                     onValueChange={(v) => {
                       const next = [...rows];
                       next[index] = { ...row, rightKind: v as OperandSide };
-                      setRows(next);
+                      applyRows(next);
                     }}
                   >
                     <SelectTrigger className="w-28">
@@ -312,7 +346,7 @@ export default function ConditionRuleBuilder({
                     onValueChange={(v) => {
                       const next = [...rows];
                       next[index] = { ...row, rightVariable: v };
-                      setRows(next);
+                      applyRows(next);
                     }}
                   >
                     <SelectTrigger className="w-44">
@@ -334,7 +368,7 @@ export default function ConditionRuleBuilder({
                     onChange={(e) => {
                       const next = [...rows];
                       next[index] = { ...row, rightLiteral: e.target.value };
-                      setRows(next);
+                      applyRows(next);
                     }}
                   />
                 )}
@@ -347,8 +381,9 @@ export default function ConditionRuleBuilder({
                     onClick={() => {
                       const nextRows = rows.filter((_, i) => i !== index);
                       const nextJoiners = joiners.filter((_, i) => i !== index - 1);
-                      setRows(nextRows.length ? nextRows : [defaultRow()]);
+                      const resolvedRows = nextRows.length ? nextRows : [defaultRow()];
                       setJoiners(nextJoiners);
+                      applyRows(resolvedRows, nextJoiners);
                     }}
                   >
                     {t('removeComparison')}
@@ -363,8 +398,10 @@ export default function ConditionRuleBuilder({
             variant="outline"
             size="sm"
             onClick={() => {
-              setRows([...rows, defaultRow()]);
-              setJoiners([...joiners, 'and']);
+              const nextRows = [...rows, defaultRow()];
+              const nextJoiners: LogicOp[] = [...joiners, 'and'];
+              setJoiners(nextJoiners);
+              applyRows(nextRows, nextJoiners);
             }}
           >
             {t('addComparison')}

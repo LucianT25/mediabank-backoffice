@@ -297,6 +297,7 @@ export default function EquipmentProfilesConfigurator({
             </div>
 
             <ConditionRuleBuilder
+              key={editingRule.id}
               productType={productType}
               value={editingRule.conditionAst}
               onChange={(ast) =>
