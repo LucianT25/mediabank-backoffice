@@ -151,7 +151,7 @@
     "pricing": "Pricing",
     "new": "New",
     "customization": "Customization",
-    "equipment profiles": "Equipment and Profiles"
+    "iflows config": "iFlows config"
   },
   "NavUser": {
     "account": "Account",
@@ -586,8 +586,7 @@
       "manufacturerDisabled": "The manufacturer of this product is disabled.",
       "productNotVisible": "This product will not show in the shop.",
       "editCustomizations": "Edit customizations",
-      "editIflowsMapping": "Edit iFlows mapping",
-      "editEquipmentProfiles": "Equipment and profiles"
+      "editIflowsConfig": "iFlows config"
     },
     "Modal": {
       "title": "Product Details",
@@ -686,7 +685,15 @@
     },
     "EquipmentProfiles": {
       "title": "Equipment and profiles",
-      "description": "Define which iFlows equipment and work profiles are attached to orders for {product} when conditions match.",
+      "description": "Attach iFlows equipment and work profiles to BOM materials for {product} when conditions match.",
+      "materials": "Materials",
+      "selectMaterials": "Select materials",
+      "searchMaterials": "Search selected materials…",
+      "clearAll": "Clear all",
+      "noMaterialsSelected": "No materials selected.",
+      "materialsSelected": "{count} materials selected",
+      "materialsSummary": "{count} materials ({preview}…)",
+      "noMaterials": "No materials with an iFlows product code found for this manufacturer.",
       "equipment": "Equipment",
       "profile": "Profile",
       "condition": "IF condition",
@@ -712,7 +719,20 @@
       "rightOperand": "Right",
       "addComparison": "Add comparison",
       "removeComparison": "Remove",
-      "preview": "Preview"
+      "preview": "Preview",
+      "materialSelection": {
+        "title": "Select materials",
+        "description": "Search and select the BOM materials this rule applies to.",
+        "searchPlaceholder": "Search by alias, iFlows code, name, or ID…",
+        "alias": "Alias",
+        "iflowsCode": "iFlows code",
+        "name": "Name",
+        "noSearchResults": "No materials match your search.",
+        "cancel": "Cancel",
+        "apply": "Apply selection ({count})",
+        "selectAll": "Select all on page",
+        "selectRow": "Select material"
+      }
     }
   },
   "Materials": {

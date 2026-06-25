@@ -1,33 +1,12 @@
-import { serverFetch, routes } from '@/lib/fetcher';
-import EquipmentProfilesConfigurator from '@/components/blocks/dashboard/products/equipment-profiles-configurator';
+import { redirect } from 'next/navigation';
 
-type Params = Promise<{ productId: string }>;
+type Params = Promise<{ locale: string; productId: string }>;
 
-export default async function ProductEquipmentProfilesPage({
+export default async function ProductEquipmentProfilesRedirect({
   params,
 }: {
   params: Params;
 }) {
-  const { productId } = await params;
-  const [productRes, rulesRes, equipmentsRes] = await Promise.all([
-    serverFetch(`${routes.product}/${productId}?fonts=false`),
-    serverFetch(`${routes.iflows}/products/${productId}/equipment-rules`),
-    serverFetch(`${routes.iflows}/equipments`),
-  ]);
-
-  const product = productRes.data?.data ?? productRes.data;
-  const rulesPayload = rulesRes.data?.data ?? rulesRes.data;
-  const equipments = equipmentsRes.data?.data ?? equipmentsRes.data ?? [];
-
-  return (
-    <div className="px-10 py-4">
-      <EquipmentProfilesConfigurator
-        productId={productId}
-        productName={product?.name ?? ''}
-        productType={rulesPayload?.productType ?? product?.type ?? ''}
-        initialRules={rulesPayload?.rules ?? product?.iflowsEquipmentRules ?? []}
-        equipments={equipments}
-      />
-    </div>
-  );
+  const { locale, productId } = await params;
+  redirect(`/${locale}/dashboard/products/${productId}/iflows-config`);
 }

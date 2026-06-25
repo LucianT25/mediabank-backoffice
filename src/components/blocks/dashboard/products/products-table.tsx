@@ -118,14 +118,9 @@ export const ProductsTable = ({rows, total}: PaginatedData<Product>) => {
                                     {t('editCustomizations')}
                                 </DropdownMenuItem>
                             </Link>
-                            <Link href={`products/${product.id}/iflows`}>
+                            <Link href={`products/${product.id}/iflows-config`}>
                                 <DropdownMenuItem>
-                                    {t('editIflowsMapping')}
-                                </DropdownMenuItem>
-                            </Link>
-                            <Link href={`products/${product.id}/equipment-profiles`}>
-                                <DropdownMenuItem>
-                                    {t('editEquipmentProfiles')}
+                                    {t('editIflowsConfig')}
                                 </DropdownMenuItem>
                             </Link>
                         </DropdownMenuContent>

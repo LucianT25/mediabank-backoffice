@@ -151,7 +151,7 @@
     "pricing": "Pret",
     "new": "Nou",
     "customization": "Personalizare",
-    "equipment profiles": "Echipamente și profile"
+    "iflows config": "Configurare iFlows"
   },
   "NavUser": {
     "account": "Cont",
@@ -586,8 +586,7 @@
       "manufacturerDisabled": "Producătorul acestui produs este dezactivat.",
       "productNotVisible": "Acest produs nu va fi afișat în magazin.",
       "editCustomizations": "Editați personalizările produsului",
-      "editIflowsMapping": "Editați maparea iFlows",
-      "editEquipmentProfiles": "Echipamente și profile"
+      "editIflowsConfig": "Configurare iFlows"
     },
     "Modal": {
       "title": "Detalii produs",
@@ -686,7 +685,15 @@
     },
     "EquipmentProfiles": {
       "title": "Echipamente și profile",
-      "description": "Definiți ce echipamente și profile de lucru iFlows se atașează comenzilor pentru {product} când condițiile sunt îndeplinite.",
+      "description": "Atașează echipamente și profile de lucru iFlows materialelor din BOM pentru {product} când condițiile sunt îndeplinite.",
+      "materials": "Materiale",
+      "selectMaterials": "Selectează materiale",
+      "searchMaterials": "Caută în materialele selectate…",
+      "clearAll": "Șterge tot",
+      "noMaterialsSelected": "Niciun material selectat.",
+      "materialsSelected": "{count} materiale selectate",
+      "materialsSummary": "{count} materiale ({preview}…)",
+      "noMaterials": "Nu există materiale cu cod de produs iFlows pentru acest producător.",
       "equipment": "Echipament",
       "profile": "Profil",
       "condition": "Condiție IF",
@@ -712,7 +719,20 @@
       "rightOperand": "Dreapta",
       "addComparison": "Adaugă comparație",
       "removeComparison": "Elimină",
-      "preview": "Previzualizare"
+      "preview": "Previzualizare",
+      "materialSelection": {
+        "title": "Selectează materiale",
+        "description": "Caută și selectează materialele BOM la care se aplică această regulă.",
+        "searchPlaceholder": "Caută după alias, cod iFlows, nume sau ID…",
+        "alias": "Alias",
+        "iflowsCode": "Cod iFlows",
+        "name": "Nume",
+        "noSearchResults": "Niciun material nu corespunde căutării.",
+        "cancel": "Anulează",
+        "apply": "Aplică selecția ({count})",
+        "selectAll": "Selectează tot pe pagină",
+        "selectRow": "Selectează material"
+      }
     }
   },
   "Materials": {

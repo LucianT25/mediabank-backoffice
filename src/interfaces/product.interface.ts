@@ -3,6 +3,7 @@ import { FormulaExpr } from "@/lib/formula/formula-expr";
 
 export interface ProductEquipmentRule {
   id: string;
+  materialIds: string[];
   equipmentId: string;
   profileId?: string | null;
   conditionAst?: FormulaExpr | null;
@@ -10,6 +11,20 @@ export interface ProductEquipmentRule {
   quantity?: string;
   digitalFile?: boolean;
   sortOrder?: number;
+}
+
+export interface IflowsEquipmentRuleMaterialOption {
+  id: string;
+  name: string;
+  iflowsProductCode: string;
+  productAlias?: string | null;
+}
+
+export interface IflowsEquipmentOption {
+  id: string;
+  name: string;
+  alias?: string;
+  profiles: { id: string; name: string }[];
 }
 
 export interface CustomizationOption {

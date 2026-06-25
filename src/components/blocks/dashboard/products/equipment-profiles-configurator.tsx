@@ -26,16 +26,15 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { routes, submitData } from '@/lib/fetcher';
 import { refreshData } from '@/lib/server-actions';
-import { ProductEquipmentRule } from '@/interfaces/product.interface';
+import {
+  IflowsEquipmentOption,
+  IflowsEquipmentRuleMaterialOption,
+  ProductEquipmentRule,
+} from '@/interfaces/product.interface';
 import { formatConditionPreview } from '@/lib/formula/build-condition';
 import ConditionRuleBuilder from './condition-rule-builder';
-
-export interface IflowsEquipmentOption {
-  id: string;
-  name: string;
-  alias?: string;
-  profiles: { id: string; name: string }[];
-}
+import EquipmentRuleMaterialPicker from './equipment-rule-material-picker';
+import EquipmentRuleMaterialsSummary from './equipment-rule-materials-summary';
 
 interface EquipmentProfilesConfiguratorProps {
   productId: string;
@@ -43,6 +42,7 @@ interface EquipmentProfilesConfiguratorProps {
   productType: string;
   initialRules: ProductEquipmentRule[];
   equipments: IflowsEquipmentOption[];
+  materials: IflowsEquipmentRuleMaterialOption[];
 }
 
 export default function EquipmentProfilesConfigurator({
@@ -51,6 +51,7 @@ export default function EquipmentProfilesConfigurator({
   productType,
   initialRules,
   equipments,
+  materials,
 }: EquipmentProfilesConfiguratorProps) {
   const t = useTranslations('Products.EquipmentProfiles');
   const { toast } = useToast();
@@ -64,12 +65,18 @@ export default function EquipmentProfilesConfigurator({
     [equipments],
   );
 
+  const materialMap = useMemo(
+    () => new Map(materials.map((m) => [m.id, m])),
+    [materials],
+  );
+
   const editingRule = rules.find((r) => r.id === editingId);
 
   const addRule = () => {
     const id = nanoid();
     const next: ProductEquipmentRule = {
       id,
+      materialIds: materials[0] ? [materials[0].id] : [],
       equipmentId: equipments[0]?.id ?? '',
       profileId: equipments[0]?.profiles[0]?.id ?? null,
       conditionAst: null,
@@ -152,9 +159,14 @@ export default function EquipmentProfilesConfigurator({
           <p className="text-sm text-amber-600">{t('noEquipments')}</p>
         )}
 
+        {materials.length === 0 && (
+          <p className="text-sm text-amber-600">{t('noMaterials')}</p>
+        )}
+
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>{t('materials')}</TableHead>
               <TableHead>{t('equipment')}</TableHead>
               <TableHead>{t('profile')}</TableHead>
               <TableHead>{t('condition')}</TableHead>
@@ -165,13 +177,19 @@ export default function EquipmentProfilesConfigurator({
           <TableBody>
             {rules.length === 0 && (
               <TableRow>
-                <TableCell colSpan={5} className="text-muted-foreground">
+                <TableCell colSpan={6} className="text-muted-foreground">
                   {t('noRules')}
                 </TableCell>
               </TableRow>
             )}
             {rules.map((rule) => (
               <TableRow key={rule.id}>
+                <TableCell className="max-w-[220px]">
+                  <EquipmentRuleMaterialsSummary
+                    materialIds={rule.materialIds}
+                    materialMap={materialMap}
+                  />
+                </TableCell>
                 <TableCell>{equipmentLabel(rule.equipmentId)}</TableCell>
                 <TableCell>
                   {profileLabel(rule.equipmentId, rule.profileId)}
@@ -217,6 +235,18 @@ export default function EquipmentProfilesConfigurator({
             <h3 className="font-medium">{t('editRule')}</h3>
 
             <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2 md:col-span-2">
+                <Label>{t('materials')}</Label>
+                <EquipmentRuleMaterialPicker
+                  materials={materials}
+                  selectedIds={editingRule.materialIds ?? []}
+                  onChange={(materialIds) =>
+                    updateRule(editingRule.id, { materialIds })
+                  }
+                  disabled={materials.length === 0}
+                />
+              </div>
+
               <div className="space-y-2">
                 <Label>{t('equipment')}</Label>
                 <Select
