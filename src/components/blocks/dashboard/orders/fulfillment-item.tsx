@@ -249,13 +249,12 @@ function FulfillmentOrderItem({
         !hasElements ||
         (isBoxConfig(cfg) && hasMaterialFields(boxSettings)) ||
         (!elementHasMaterials && hasMaterialFields(materialsSource));
-    const compressedConfig = typeof cfg?.config === 'string' ? cfg.config : undefined;
     const configuratorUrl = buildConfiguratorUrl({
         resellerKey: resellerKey ?? '',
         locale,
         configType: String(cfg?.configType ?? ''),
         productType: item.product?.type,
-        compressedConfig,
+        orderItemId: item.id,
         productId: item.product?.id,
     });
 

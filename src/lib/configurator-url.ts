@@ -31,9 +31,19 @@ export function buildConfiguratorUrl(params: {
   productType?: ProductType;
   compressedConfig?: string;
   productId?: string;
+  orderItemId?: string;
 }): string | null {
-  const { resellerKey, locale, compressedConfig, productId, configType, productType } = params;
-  if (!resellerKey || !compressedConfig) return null;
+  const {
+    resellerKey,
+    locale,
+    compressedConfig,
+    productId,
+    orderItemId,
+    configType,
+    productType,
+  } = params;
+  if (!resellerKey) return null;
+  if (!orderItemId && !compressedConfig) return null;
 
   const type = getConfiguratorType(configType, productType);
   if (!type) return null;
@@ -46,7 +56,11 @@ export function buildConfiguratorUrl(params: {
   const url = new URL(
     `${base.replace(/\/$/, '')}/${locale}/${encodeURIComponent(resellerKey)}/shop/${path}`,
   );
-  url.searchParams.set('config', compressedConfig);
+  if (orderItemId) {
+    url.searchParams.set('orderItemId', orderItemId);
+  } else if (compressedConfig) {
+    url.searchParams.set('config', compressedConfig);
+  }
   if (productId) url.searchParams.set('productId', productId);
   return url.toString();
 }
