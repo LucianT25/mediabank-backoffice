@@ -21,9 +21,7 @@ export function IflowsSyncCard({ order }: { order: Order }) {
     const [syncing, setSyncing] = useState(false);
     const [loadingInvoice, setLoadingInvoice] = useState(false);
 
-    const canViewInvoice =
-        order.iflowsSyncStatus === IflowsSyncStatus.paid &&
-        !!order.iflowsOrderId;
+    const canViewInvoice = !!order.iflowsOrderId;
 
     const viewInvoice = async () => {
         setLoadingInvoice(true);
@@ -181,7 +179,8 @@ export function IflowsSyncCard({ order }: { order: Order }) {
                     </div>
                 )}
 
-                {order.iflowsLastSyncError && (
+                {order.iflowsLastSyncError &&
+                    order.iflowsSyncStatus !== IflowsSyncStatus.paid && (
                     <Alert variant="destructive">
                         <AlertDescription className="break-words">
                             <span className="font-medium">{t('syncError')}: </span>
