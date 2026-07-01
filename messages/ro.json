@@ -503,7 +503,9 @@
         "statusFailed": "Eșuat",
         "statusPending": "Nesincronizat",
         "statusNotApplicable": "Nu se aplică",
-        "paidRequired": "Comanda trebuie să fie plătită înainte de a putea fi sincronizată cu iFlows."
+        "paidRequired": "Comanda trebuie să fie plătită înainte de a putea fi sincronizată cu iFlows.",
+        "viewInvoice": "Vezi factura iFlows",
+        "invoiceUnavailable": "Factura nu este disponibilă pentru această comandă."
       }
     },
     "Item": {

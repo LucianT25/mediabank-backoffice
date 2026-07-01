@@ -503,7 +503,9 @@
         "statusFailed": "Failed",
         "statusPending": "Not synced",
         "statusNotApplicable": "Not applicable",
-        "paidRequired": "The order must be paid before it can be synced to iFlows."
+        "paidRequired": "The order must be paid before it can be synced to iFlows.",
+        "viewInvoice": "View iFlows invoice",
+        "invoiceUnavailable": "Invoice is not available for this order."
       }
     },
     "Item": {

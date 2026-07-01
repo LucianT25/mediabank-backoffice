@@ -5,10 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { CheckCircle2, Clock, RefreshCw, XCircle, Loader2 } from "lucide-react";
+import { CheckCircle2, Clock, RefreshCw, XCircle, Loader2, FileText } from "lucide-react";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { routes, submitData } from "@/lib/fetcher";
+import { clientFetch, routes, submitData } from "@/lib/fetcher";
 import { refreshData } from "@/lib/server-actions";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslations } from "next-intl";
@@ -19,6 +19,39 @@ export function IflowsSyncCard({ order }: { order: Order }) {
     const t = useTranslations('Orders.Details.Iflows');
     const tMessages = useTranslations('Messages');
     const [syncing, setSyncing] = useState(false);
+    const [loadingInvoice, setLoadingInvoice] = useState(false);
+
+    const canViewInvoice =
+        order.iflowsSyncStatus === IflowsSyncStatus.paid &&
+        !!order.iflowsOrderId;
+
+    const viewInvoice = async () => {
+        setLoadingInvoice(true);
+        try {
+            const response = await clientFetch(
+                `${routes.order}/invoice/${order.id}`,
+                (session as any)?.accessToken,
+            );
+
+            if (response.error || !response.data?.url) {
+                toast({
+                    variant: 'destructive',
+                    title: tMessages('genericError'),
+                    description: t('invoiceUnavailable'),
+                });
+            } else {
+                window.open(response.data.url, '_blank');
+            }
+        } catch {
+            toast({
+                variant: 'destructive',
+                title: tMessages('genericError'),
+                description: t('invoiceUnavailable'),
+            });
+        } finally {
+            setLoadingInvoice(false);
+        }
+    };
 
     const canSync =
         order.status === OrderStatus.paid &&
@@ -127,6 +160,24 @@ export function IflowsSyncCard({ order }: { order: Order }) {
                     <div className="flex items-center justify-between">
                         <span className="text-muted-foreground">{t('iflowsOrderId')}</span>
                         <span className="font-mono text-sm">{order.iflowsOrderId}</span>
+                    </div>
+                )}
+
+                {canViewInvoice && (
+                    <div className="flex justify-end">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={viewInvoice}
+                            disabled={loadingInvoice}
+                        >
+                            {loadingInvoice ? (
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            ) : (
+                                <FileText className="mr-2 h-4 w-4" />
+                            )}
+                            {t('viewInvoice')}
+                        </Button>
                     </div>
                 )}
 
